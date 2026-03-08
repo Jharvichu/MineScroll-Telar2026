@@ -2,21 +2,22 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
-  tags: []
+  serializedVersion: 3
+  tags:
+  - Character
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - HiddenSpotDynamic
+  - Player
+  - HiddenSpotStatic
+  - Enemy
+  - EntryHidden
+  - HiddenSpot
   - 
   - 
   - 
@@ -41,3 +42,8 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 4128758137
+    locked: 0
+  m_RenderingLayers:
+  - Default

@@ -12,9 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17817c8450411944895fb95e4c5144d1, type: 3}
   m_Name: GroundState
   m_EditorClassIdentifier: 
-  HorizontalVelocity: 5
+  HorizontalVelocity: 6
+  VerticalVelocity: 3
   GroundLayer:
     serializedVersion: 2
     m_Bits: 8
-  GroundRaycastDistance: 0.25
-  GroundRaycastAmplitude: 0.5
+  GroundRaycastDistance: 0.2
+  GroundRaycastAmplitude: 0.2
+  LedgeAboveLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  LedgeRaycastMiddleDistance: 2.25
+  LedgeMiddleHeight: 0.3
+  LedgeRaycastTopDistance: 3.5
+  LedgeTopHeight: 0.3
+  LedgeBelowLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  LedgeBelowRaycastAmplitude: 0.3
+  LedgeBelowRaycastDistance: 0.25

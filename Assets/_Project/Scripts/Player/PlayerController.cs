@@ -1,20 +1,50 @@
 using UnityEngine;
 using StateMachine;
-
+ 
 namespace Player {
 
 	[RequireComponent(typeof(Rigidbody2D))]
 	public class PlayerController : StateMachineController {
 
-		public Rigidbody2D Rigidbody2D { private set; get; }
-		public Animator Animator { private set; get; }
-		public float FacingDirection => transform.localScale.x > 0 ? 1f : -1f;
+        public bool canControl = true;
+
+        [SerializeField] private GameObject Sombra;
+
+        public Rigidbody2D Rigidbody2D { private set; get; }
+        public Collider2D Collider2D { private set; get; }
+        public Animator Animator { private set; get; }
+
+        public SpriteRenderer SpriteRenderer { private set; get; }
+        public Collider2D CurrentHidingSpotCollider { private set; get; }
+
+        public float FacingDirection => transform.localScale.x > 0 ? 1f : -1f;
+
+        public bool canHide, isHidden, isCrouching, isHanging, isClimbing, isDroppingToLedge, isDropping, isCeilingBlocked;
+        public bool isEntryHidding;
 
 		protected override void Awake() {
 			Rigidbody2D = GetComponent<Rigidbody2D>();
+            Collider2D = GetComponent<Collider2D>() as CapsuleCollider2D;
 			Animator = GetComponent<Animator>();
+			SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
 			base.Awake();
 		}
+
+        private void Update()
+        {
+            bool oculto = isClimbing || isDropping || isDroppingToLedge || isHanging;
+
+            if (oculto)
+            {
+                Sombra.SetActive(false);
+            }
+            else
+            {
+                Sombra.SetActive(true);
+            }
+
+            base.Update();
+        }
 
 		public void FlipSprite(float directionX) {
 			Vector3 scale = transform.localScale;
@@ -29,11 +59,49 @@ namespace Player {
 			}
 		}
 
-		void OnTriggerEnter2D(Collider2D collision) {
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("HiddenSpotDynamic"))
+            {
+                canHide = true;
+                CurrentHidingSpotCollider = collision;
+            }
 
-		}
+            if (collision.gameObject.layer == LayerMask.NameToLayer("HiddenSpot"))
+            {
+                canHide = true;
+                CurrentHidingSpotCollider = collision;
+            }
 
-		public void Restart() {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("HiddenSpotStatic"))
+            {
+                canHide = true;
+                CurrentHidingSpotCollider = collision;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("HiddenSpotDynamic"))
+            {
+                canHide = false;
+                CurrentHidingSpotCollider = null;
+            }
+
+            if (collision.gameObject.layer == LayerMask.NameToLayer("HiddenSpotStatic"))
+            {
+                canHide = false;
+                CurrentHidingSpotCollider = null;
+            }
+
+            if (collision.gameObject.layer == LayerMask.NameToLayer("HiddenSpot"))
+            {
+                canHide = false;
+                CurrentHidingSpotCollider = null;
+            }
+        }
+
+        public void Restart() {
 			base.Awake();
 			ResetMachine();
 		}

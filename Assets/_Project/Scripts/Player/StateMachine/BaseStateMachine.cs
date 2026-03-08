@@ -8,14 +8,16 @@ namespace Player {
 		Death,
 	}
 
-	public enum MovementSate {
-		Ground, //Puede Cambiar
-		Crouch
+	public enum MovementState {
+		Ground,
+		Air,
+		Crouch,
+		Ledge
 	}
 
-    public enum Hidden
+    public enum HiddenState
     {
-        Ground, //Puede Cambiar
+        Ground,
         Crouch
     }
 
