@@ -401,10 +401,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Adrian Salas - Lead Game Design\nAlvaro Roldan - Programador\nDavid Ramirez
-    - Lead Narrativa\nJharvy Cadillo - Lead Programador \nLuis Zegarra - Lead Audio\nRaquel
-    Reus - Lead Arte\nAngie Mina - Programadora\nAndr\xE9s Porras - Arte\nAriadna
-    Mestanza - Arte"
+  m_Text: "Adri\xE1n Sala - Lead Game Design\nAlvaro Roldan - Programador\nDavid
+    Ramirez - Lead Narrativa\nJharvy Cadillo - Lead Programador \nZerovolt0V - Lead
+    Audio\nRaquel Reus - Lead Arte\nAsuna Mina - Programadora\nAndr\xE9s Porras -
+    Arte\nAriadna Mestanza - Arte"
 --- !u!222 &672210501
 CanvasRenderer:
   m_ObjectHideFlags: 0
