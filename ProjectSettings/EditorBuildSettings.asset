@@ -6,58 +6,58 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Project/Scenes/MenuTest/MainMenu.unity
+    path: Assets/_Project/Scenes/Test/MenuTest/MainMenu.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/_Project/Scenes/Prologo/PrologoScene.unity
+    path: Assets/_Project/Scenes/Juego/PrologoScene.unity
     guid: 29916cc3a0809d04d8f8b0e14dbdca4c
   - enabled: 1
-    path: Assets/_Project/Scenes/Orilla.unity
+    path: Assets/_Project/Scenes/Juego/Orilla.unity
     guid: 89e2d9c2d9b8eab4285061d3881a4a7e
   - enabled: 1
-    path: Assets/_Project/Scenes/MenuTest/ControlsScene.unity
+    path: Assets/_Project/Scenes/Test/MenuTest/ControlsScene.unity
     guid: 2a376a20df926e94a89e51660b5ec66c
   - enabled: 1
-    path: Assets/_Project/Scenes/MenuTest/CreditsScene.unity
+    path: Assets/_Project/Scenes/Test/MenuTest/CreditsScene.unity
     guid: 7d2c493640250614fa0cca58fc1d9d10
   - enabled: 1
-    path: Assets/_Project/Scenes/Tutorial.unity
+    path: Assets/_Project/Scenes/Juego/Tutorial.unity
     guid: 1efdbbc04d341ae4cb7e25e47c9aa613
   - enabled: 1
-    path: Assets/_Project/Scenes/Nivel1.unity
+    path: Assets/_Project/Scenes/Juego/Nivel1.unity
     guid: e664c67da04aa78408ebe611ee95ca65
   - enabled: 1
-    path: Assets/_Project/Scenes/Intermedio1.unity
+    path: Assets/_Project/Scenes/Juego/Intermedio1.unity
     guid: f3d63bc20985a9a4bb0f027f45defe83
   - enabled: 1
-    path: Assets/_Project/Scenes/Nivel2.unity
+    path: Assets/_Project/Scenes/Juego/Nivel2.unity
     guid: 9939804eedd31484eb39f285622f2dfa
   - enabled: 1
-    path: Assets/_Project/Scenes/Tutorial 1.unity
+    path: Assets/_Project/Scenes/Juego/Tutorial 1.unity
     guid: 5d0dce269a461e344accb5d5eeaed64f
   - enabled: 1
-    path: Assets/_Project/Scenes/GameOver1.unity
+    path: Assets/_Project/Scenes/Juego/GameOver1.unity
     guid: 207176d61fb610c449efca8741339a35
   - enabled: 1
-    path: Assets/_Project/Scenes/GameOver2.unity
+    path: Assets/_Project/Scenes/Juego/GameOver2.unity
     guid: 669a7d26af53ffa419c3ceb8a890e26c
   - enabled: 1
-    path: Assets/_Project/Scenes/GameOver3.unity
+    path: Assets/_Project/Scenes/Juego/GameOver3.unity
     guid: 80821ff5992e7a1419330fa1132a7c7a
   - enabled: 1
-    path: Assets/_Project/Scenes/Intermedio2.unity
+    path: Assets/_Project/Scenes/Juego/Intermedio2.unity
     guid: 2c5daa01ad7e16c448662774f0bc4200
   - enabled: 1
-    path: Assets/_Project/Scenes/Intermedio3.unity
+    path: Assets/_Project/Scenes/Juego/Intermedio3.unity
     guid: bb022eafaa8140246b1f0670ba085d24
   - enabled: 1
-    path: Assets/_Project/Scenes/Nivel3.unity
+    path: Assets/_Project/Scenes/Juego/Nivel3.unity
     guid: 99375eec1ab219c479b0f7321c68fe95
   - enabled: 1
-    path: Assets/_Project/Scenes/Nivel4.unity
+    path: Assets/_Project/Scenes/Juego/Nivel4.unity
     guid: 8843e9810935b264fbcc853fd123703d
   - enabled: 1
-    path: Assets/_Project/Scenes/Epilogo/EpilogoScene.unity
+    path: Assets/_Project/Scenes/Juego/EpilogoScene.unity
     guid: cf2d2e7c1e065654994e1590849cc172
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
