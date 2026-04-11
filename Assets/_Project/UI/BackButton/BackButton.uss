@@ -1,32 +1,33 @@
-Button#back-button {
-    background-image: url('botones');
-    -unity-background-image-tint-color: white;
-    border-width: 0;
-    background-color: rgb(255, 255, 255);
-    border-left-color: rgb(255, 255, 255);
-    border-right-color: rgb(255, 255, 255);
-    border-top-color: rgb(255, 255, 255);
-    border-bottom-color: rgb(255, 255, 255);
+#BackButton {
+    width: 20%;
+    height: 80px;
+    margin: 20px;
+    font-size: 60px;
+    transition: background-color 0.15s, scale 0.1s;
+    background-image: url('project:///Assets/_Project/Art/UI/botones.png'); 
+    -unity-background-image-tint-color: rgb(200, 200, 200);
+    opacity: 1;
+    transition: scale 0.1s, -unity-background-image-tint-color 0.1s;
 }
 
-Button#backbutton:hover {
-    scale: 1.1;
-    -unity-background-image-tint-color: rgb(118, 18, 18);
-    background-color: rgb(152, 16, 16);
-    color: rgb(178, 39, 39);
-    -unity-text-outline-color: rgb(164, 12, 12);
-    border-left-color: rgb(130, 24, 24);
-    border-right-color: rgb(130, 24, 24);
-    border-top-color: rgb(130, 24, 24);
-    border-bottom-color: rgb(130, 24, 24);
+#BackButton:hover {
+    scale: 1.1 !important;
+    -unity-background-image-tint-color: rgb(255, 255, 255) !important;
+    
+    border-color: rgb(255, 255, 0) !important;
+    border-width: 4px !important;
+    
+    color: white !important;
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: rgb(255, 255, 0);
+    
+    opacity: 1 !important; 
 }
-
-Button#back-button:active {
+#BackButton:active {
+    background-color: orange;
     scale: 0.95;
-    background-color: rgb(255, 255, 255);
-    border-left-color: rgb(94, 6, 6);
-    border-right-color: rgb(94, 6, 6);
-    border-top-color: rgb(94, 6, 6);
-    border-bottom-color: rgb(94, 6, 6);
     -unity-background-image-tint-color: rgb(131, 124, 99);
+}
+
+.unity-text-element {
 }

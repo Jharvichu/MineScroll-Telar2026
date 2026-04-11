@@ -24,15 +24,24 @@ Button {
     height: 80px;
     margin: 20px;
     font-size: 60px;
-    background-color: white;
-    color: black;
     transition: background-color 0.15s, scale 0.1s;
+    -unity-background-image-tint-color: rgb(200, 200, 200);
+    opacity: 1;
+    transition: scale 0.1s, -unity-background-image-tint-color 0.1s;
 }
 
 Button:hover {
-    background-color: rgb(255, 127, 102);
-    scale: 1.05;
-    -unity-background-image-tint-color: rgb(131, 124, 99);
+       scale: 1.1 !important;
+    -unity-background-image-tint-color: rgb(255, 255, 255) !important;
+    
+    border-color: rgb(255, 255, 0) !important;
+    border-width: 4px !important;
+    
+    color: white !important;
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: rgb(255, 255, 0);
+    
+    opacity: 1 !important; 
 }
 
 Button:active {

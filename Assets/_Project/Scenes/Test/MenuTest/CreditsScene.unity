@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 672210501}
   - component: {fileID: 672210500}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Titulo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -365,7 +365,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -70.45691, y: -33.228455}
+  m_AnchoredPosition: {x: -22, y: 413}
   m_SizeDelta: {x: 1123.0647, y: 952.8807}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &672210500
@@ -389,8 +389,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d65cf3ba09b1e39448c6f7dad9103707, type: 3}
-    m_FontSize: 50
+    m_Font: {fileID: 12800000, guid: ab46bc45c63a347409f2256b54ad1075, type: 3}
+    m_FontSize: 60
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -401,10 +401,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Adrian Salas - Lead Game Design\nAlvaro Roldan - Programador\nDavid Ramirez
-    - Lead Narrativa\nJharvy Cadillo - Lead Programador \nLuis Zegarra - Lead Audio\nRaquel
-    Reus - Lead Arte\nAngie Mina - Programadora\nAndr\xE9s Porras - Arte\nAriadna
-    Mestanza - Arte"
+  m_Text: "CR\xC9DITOS"
 --- !u!222 &672210501
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -508,6 +505,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 672210499}
+  - {fileID: 1845622114}
   - {fileID: 1642941736}
   - {fileID: 1872135650}
   m_Father: {fileID: 0}
@@ -684,6 +682,88 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1642941735}
+  m_CullTransparentMesh: 1
+--- !u!1 &1845622113
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1845622114}
+  - component: {fileID: 1845622116}
+  - component: {fileID: 1845622115}
+  m_Layer: 5
+  m_Name: Text (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1845622114
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845622113}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 682317072}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -70.45691, y: -33.228455}
+  m_SizeDelta: {x: 1123.0647, y: 952.8807}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1845622115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845622113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: ab46bc45c63a347409f2256b54ad1075, type: 3}
+    m_FontSize: 60
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 60
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 0
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "Adrian Salas - Lead Game Design\nAlvaro Roldan - Programador\nDavid Ramirez
+    - Lead Narrativa\nJharvy Cadillo - Lead Programador \nLuis Zegarra - Lead Audio\nRaquel
+    Reus - Lead Arte\nAngie Mina - Programadora\nAndr\xE9s Porras - Arte\nAriadna
+    Mestanza - Arte"
+--- !u!222 &1845622116
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845622113}
   m_CullTransparentMesh: 1
 --- !u!1 &1872135649
 GameObject:

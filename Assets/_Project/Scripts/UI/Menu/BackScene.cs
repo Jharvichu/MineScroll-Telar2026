@@ -17,7 +17,7 @@ public class CreditsController : MonoBehaviour
     {
         var root = GetComponent<UIDocument>().rootVisualElement;
 
-        root.Q<Button>("back-button").clicked += () =>
+        root.Q<Button>("BackButton").clicked += () =>
         {
             AudioManager.Instance.PlaySFX(back);
             StartCoroutine(Transicion("MainMenu"));
