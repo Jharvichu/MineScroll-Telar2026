@@ -25,7 +25,7 @@ public class MainMenuController : MonoBehaviour
         root.Q<Button>("PlayButton").clicked += () =>
         {
             AudioManager.Instance.PlaySFX(select);
-            StartCoroutine(Transicion("PrologoScene"));
+            StartCoroutine(Transicion("Orilla"));
         };
 
         root.Q<Button>("CreditsButton").RegisterCallback<MouseEnterEvent>(_ => AudioManager.Instance.PlaySFX(hover3));

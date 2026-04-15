@@ -6,7 +6,7 @@
     transition: background-color 0.15s, scale 0.1s;
     background-image: url('project:///Assets/_Project/Art/UI/botones.png'); 
     -unity-background-image-tint-color: rgb(200, 200, 200);
-    opacity: 1;
+   
     transition: scale 0.1s, -unity-background-image-tint-color 0.1s;
 }
 
@@ -18,8 +18,8 @@
     border-width: 4px !important;
     
     color: white !important;
-    -unity-text-outline-width: 1px;
-    -unity-text-outline-color: rgb(255, 255, 0);
+ 
+    
     
     opacity: 1 !important; 
 }
