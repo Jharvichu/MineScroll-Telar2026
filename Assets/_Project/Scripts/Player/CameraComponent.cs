@@ -1,3 +1,5 @@
+using System;
+using Player;
 using UnityEngine;
 
 public class CameraComponent : MonoBehaviour
@@ -6,7 +8,16 @@ public class CameraComponent : MonoBehaviour
     [SerializeField] private float cooldownTime = 1.5f;
     private float nextPhotoTime = 0f;
     
+    int photoCount = 1;
+    
     public Animator animator;
+    
+    PlayerController playerController;
+
+    public void Awake()
+    {
+        playerController = GetComponent<PlayerController>();
+    }
 
     void Update()
     {
@@ -20,7 +31,12 @@ public class CameraComponent : MonoBehaviour
 
     private void TomarFoto()
     {
-        //PhotoManager.Instance.AddPhoto();
+        if (playerController.isPlayerInside)
+        {
+            PhotoManager.Instance.AddPhoto(photoCount);
+            photoCount = 0;
+            Debug.Log(PhotoManager.Instance.GetPhotoCount());
+        }
         animator.SetTrigger("TakePhoto");
         Debug.Log("¡Foto capturada!");
     }

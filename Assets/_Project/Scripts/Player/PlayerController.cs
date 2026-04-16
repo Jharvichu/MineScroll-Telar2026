@@ -7,6 +7,7 @@ namespace Player {
 	public class PlayerController : StateMachineController {
 
         public bool canControl = true;
+        public bool isPlayerInside;
 
         [SerializeField] private GameObject Sombra;
 
@@ -15,6 +16,7 @@ namespace Player {
         public Animator Animator { private set; get; }
 
         public SpriteRenderer SpriteRenderer { private set; get; }
+        public CameraComponent Camera;
         public Collider2D CurrentHidingSpotCollider { private set; get; }
 
         public float FacingDirection => transform.localScale.x > 0 ? 1f : -1f;
@@ -27,6 +29,7 @@ namespace Player {
             Collider2D = GetComponent<Collider2D>() as CapsuleCollider2D;
 			Animator = GetComponent<Animator>();
 			SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+			Camera = GetComponentInChildren<CameraComponent>();
 			base.Awake();
 		}
 

@@ -14,14 +14,19 @@ public class PhotoManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
+        
+        transform.SetParent(null); 
         DontDestroyOnLoad(gameObject);
+        
+        Debug.Log("<color=cyan>PhotoManager:</color> Instancia persistente inicializada.");
     }
     
-    public void AddPhoto()
+    public void AddPhoto(int photoNum)
     {
-        photoCount++;
-        Debug.Log("Total de fotos capturadas: " + photoCount);
+        photoCount += photoNum;
+        Debug.Log($"<color=green>Foto capturada!</color> Total: {photoCount}");
     }
     
     public int GetPhotoCount()
