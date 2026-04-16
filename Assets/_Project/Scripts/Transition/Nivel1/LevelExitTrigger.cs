@@ -24,7 +24,7 @@ public class LevelExitTrigger : MonoBehaviour
             PlayerController player = collision.GetComponent<PlayerController>();
             if (player != null)
             {
-                //player.canControl = false;
+                player.canControl = false;
                 player.Rigidbody2D.linearVelocity = Vector2.zero;
                 Debug.Log("2. Roldan congelado exitosamente.");
                 

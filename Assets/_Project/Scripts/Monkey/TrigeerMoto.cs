@@ -14,7 +14,7 @@ public class TrigeerMoto : MonoBehaviour
 
             if (controller != null)
             {
-                //controller.canControl = false;
+                controller.canControl = false;
                 controller.Rigidbody2D.linearVelocity = Vector2.zero;
                 controller.Rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
             }

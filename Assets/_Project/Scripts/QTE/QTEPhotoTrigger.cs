@@ -39,7 +39,7 @@ public class QTEPhotoTrigger : MonoBehaviour
         hasTriggered = true;
         
         // 1. Congelar a Carrillo físicamente
-        //trappedPlayer.canControl = false;
+        trappedPlayer.canControl = false;
         trappedPlayer.Rigidbody2D.linearVelocity = Vector2.zero;
 
         // (Animación desactivada hasta que la metas al Animator)
@@ -53,7 +53,7 @@ public class QTEPhotoTrigger : MonoBehaviour
     void OnQTESuccess()
     {
         // ¡Foto tomada! Le devolvemos el control a Carrillo
-        //trappedPlayer.canControl = true;
+        trappedPlayer.canControl = true;
         
         // (Animación desactivada)
         // Animator anim = trappedPlayer.GetComponentInChildren<Animator>();

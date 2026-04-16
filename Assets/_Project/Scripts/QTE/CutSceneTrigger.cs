@@ -36,7 +36,7 @@ public class CutSceneTrigger : MonoBehaviour
 
         if (controller != null)
         {
-            //controller.canControl = false;
+            controller.canControl = false;
             controller.Rigidbody2D.linearVelocity = Vector2.zero;
 
 
@@ -86,7 +86,7 @@ public class CutSceneTrigger : MonoBehaviour
         Destroy(gameObject);
 
         Debug.Log("Foto tomada");
-        //EndCutscene();
+        EndCutscene();
     }
     void EndCutscene()
     {
@@ -94,7 +94,7 @@ public class CutSceneTrigger : MonoBehaviour
 
         if (controller != null)
         {
-            //controller.canControl = true;
+            controller.canControl = true;
         }
 
         inCutscene = false;

@@ -45,7 +45,7 @@ public class HidingTube : MonoBehaviour
         {
             
             
-            //SetCeilingActive(player.isHidden);
+            SetCeilingActive(player.isHidden);
         }
     }
 

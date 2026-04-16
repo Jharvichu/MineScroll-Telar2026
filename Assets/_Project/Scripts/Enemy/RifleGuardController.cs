@@ -40,8 +40,7 @@ public class RifleGuardController : MonoBehaviour
         currentPatrolTarget = pointB;
         animator = GetComponent<Animator>();
     }
-    
-    /*
+
     void Update()
     {
         switch (currentState)
@@ -217,5 +216,4 @@ public class RifleGuardController : MonoBehaviour
         scale.x = Mathf.Abs(scale.x) * direction;
         transform.localScale = scale;
     }
-    */
 }

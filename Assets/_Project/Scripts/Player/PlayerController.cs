@@ -1,40 +1,111 @@
 using UnityEngine;
 using StateMachine;
+ 
+namespace Player {
 
-namespace Player 
-{
-    [RequireComponent(typeof(Rigidbody2D))]
-    [RequireComponent(typeof(PlayerInputHandler))]
-    public class PlayerController : StateMachineController {
+	[RequireComponent(typeof(Rigidbody2D))]
+	public class PlayerController : StateMachineController {
+
+        public bool canControl = true;
+
+        [SerializeField] private GameObject Sombra;
 
         public Rigidbody2D Rigidbody2D { private set; get; }
-        public PlayerInputHandler InputHandler { private set; get; }
+        public Collider2D Collider2D { private set; get; }
+        public Animator Animator { private set; get; }
+
+        public SpriteRenderer SpriteRenderer { private set; get; }
+        public Collider2D CurrentHidingSpotCollider { private set; get; }
+
         public float FacingDirection => transform.localScale.x > 0 ? 1f : -1f;
 
-        protected override void Awake() {
-            Rigidbody2D = GetComponent<Rigidbody2D>();
-            InputHandler = GetComponent<PlayerInputHandler>();
-            base.Awake();
+        public bool canHide, isHidden, isCrouching, isHanging, isClimbing, isDroppingToLedge, isDropping, isCeilingBlocked;
+        public bool isEntryHidding;
+
+		protected override void Awake() {
+			Rigidbody2D = GetComponent<Rigidbody2D>();
+            Collider2D = GetComponent<Collider2D>() as CapsuleCollider2D;
+			Animator = GetComponent<Animator>();
+			SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+			base.Awake();
+		}
+
+        private void Update()
+        {
+            bool oculto = isClimbing || isDropping || isDroppingToLedge || isHanging;
+
+            if (oculto)
+            {
+                Sombra.SetActive(false);
+            }
+            else
+            {
+                Sombra.SetActive(true);
+            }
+
+            base.Update();
         }
 
-        public void FlipSprite(float directionX) {
-            Vector3 scale = transform.localScale;
+		public void FlipSprite(float directionX) {
+			Vector3 scale = transform.localScale;
 
-            if (directionX < 0 && scale.x > 0 || directionX > 0 && scale.x < 0) {
-                scale.x *= -1f;
-                transform.localScale = scale;
+			if (directionX < 0 && scale.x > 0) {
+				scale.x = -1f;
+				transform.localScale = scale;
+			}
+			else if (directionX > 0 && scale.x < 0) {
+				scale.x = 1f;
+				transform.localScale = scale;
+			}
+		}
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("HiddenSpotDynamic"))
+            {
+                canHide = true;
+                CurrentHidingSpotCollider = collision;
+            }
+
+            if (collision.gameObject.layer == LayerMask.NameToLayer("HiddenSpot"))
+            {
+                canHide = true;
+                CurrentHidingSpotCollider = collision;
+            }
+
+            if (collision.gameObject.layer == LayerMask.NameToLayer("HiddenSpotStatic"))
+            {
+                canHide = true;
+                CurrentHidingSpotCollider = collision;
             }
         }
 
-        void OnTriggerEnter2D(Collider2D collision) {
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("HiddenSpotDynamic"))
+            {
+                canHide = false;
+                CurrentHidingSpotCollider = null;
+            }
 
+            if (collision.gameObject.layer == LayerMask.NameToLayer("HiddenSpotStatic"))
+            {
+                canHide = false;
+                CurrentHidingSpotCollider = null;
+            }
+
+            if (collision.gameObject.layer == LayerMask.NameToLayer("HiddenSpot"))
+            {
+                canHide = false;
+                CurrentHidingSpotCollider = null;
+            }
         }
 
         public void Restart() {
-            base.Awake();
-            ResetMachine();
-        }
+			base.Awake();
+			ResetMachine();
+		}
 
-    }
+	}
 
 }

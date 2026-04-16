@@ -23,7 +23,7 @@ public class TriggerBMono : MonoBehaviour
 
             if (controller != null)
             {
-                //controller.canControl = false; // 🔥 PLAYER NO SE MUEVE
+                controller.canControl = false; // 🔥 PLAYER NO SE MUEVE
                 controller.Rigidbody2D.linearVelocity = Vector2.zero;
             }
 
@@ -44,7 +44,7 @@ public class TriggerBMono : MonoBehaviour
 
             if (controller != null)
             {
-                //controller.canControl = true; // 🔥 vuelve el control
+                controller.canControl = true; // 🔥 vuelve el control
             }
 
             esperandoF = false;
