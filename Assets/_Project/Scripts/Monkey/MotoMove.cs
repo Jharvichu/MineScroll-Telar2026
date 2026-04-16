@@ -42,7 +42,7 @@ public class MotoMove : MonoBehaviour
         if (Vector2.Distance(transform.position, pointB.position) < 0.05f)
         {
             if (playerController != null)
-                playerController.canControl = true;
+                //playerController.canControl = true;
             playerController.Rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
 
             motoInstance.stop(STOP_MODE.ALLOWFADEOUT);

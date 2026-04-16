@@ -1,259 +1,55 @@
-using System;
-using StateMachine;
+﻿using StateMachine;
 using UnityEngine;
 
-namespace Player {
-
-	public class MovementSubSM : AStateMachine
+namespace Player 
+{
+	public class MovementSubSM : AStateMachine 
 	{
 		private SO_MovementSubSM _movementData;
 		private PlayerController _player;
+		
+		private bool _isCrouching;
 
-		public float _cliffCooldownTimer = 0f;
-		public float _grabCooldownTimer = 0f;
-
-		public bool modoLedge = false;			// Importante cambiar nombre o ver otra forma
-		public bool isHidding = false;
-
-		public MovementSubSM(SO_StateMachine data) : base(data)
-		{
+		public MovementSubSM(SO_StateMachine data) : base(data) {
 			_movementData = data as SO_MovementSubSM;
 		}
 
-		public override void Init(StateMachineController controller, AStateMachine parent = null)
-		{
+		public override void Init(StateMachineController controller, AStateMachine parent = null) {
 			base.Init(controller, parent);
 			_player = controller as PlayerController;
 		}
 
-		public override void EnterState()
-		{
-			Debug.Log("Enter to Movement State");
+		public override void EnterState() {
 			ChangeState(MovementState.Ground);
 			base.EnterState();
 		}
-		
-		public override void UpdateState()
-		{
-			DrawDebug();
-			TryEnterHiddenState();
-            if (_cliffCooldownTimer > 0f) _cliffCooldownTimer -= Time.deltaTime;
-			if (_grabCooldownTimer > 0f) _grabCooldownTimer -= Time.deltaTime;
+
+		public override void UpdateState() {
 			base.UpdateState();
+			HandleInput();
 		}
 
-		public override void FixedUpdateState()
-		{
-			CheckCliff();
-			CheckGround();
+		public override void FixedUpdateState() {
 			base.FixedUpdateState();
 		}
 
-		public override void ExitState()
-        {
-            base.ExitState();
-        }
-
-		private void DrawDebug()
+        public override void ExitState() {
+			base.ExitState();
+		}
+        
+		private void HandleInput()
 		{
-			if (!_movementData.EnableDebug) return;
-			DrawGroundLines();
-			DrawCliffLines();
-			DrawDetectionLines();
-			DrawDetectionLine();
-
-        }
-
-        private void TryEnterHiddenState()
-        {
-            MovementState? currentState = GetCurrentState() as MovementState?;
-            if (currentState != MovementState.Ground && currentState != MovementState.Crouch) return;
-            if (_player.CurrentHidingSpotCollider == null) return;
-
-            RaycastHit2D hiddenSpotHitLeft = Physics2D.Raycast(
-                (Vector2)_player.transform.position - Vector2.right * _movementData.DetectionRaycastAmplitude,
-                Vector2.down,
-                _movementData.DetectionRaycastDistance,
-                _movementData.HiddenSpotLayer);
-
-            RaycastHit2D hiddenSpotHitRight = Physics2D.Raycast(
-                (Vector2)_player.transform.position + Vector2.right * _movementData.DetectionRaycastAmplitude,
-                Vector2.down,
-                _movementData.DetectionRaycastDistance,
-                _movementData.HiddenSpotLayer);
-
-            RaycastHit2D hiddenEntryHit = Physics2D.Raycast(
-                (Vector2)_player.transform.position + Vector2.up * _movementData.DetectionRaycastOffSetY,
-                Vector2.up,
-                _movementData.DetectionRaycastSizeY,
-                _movementData.HiddenSpotCrouchLayer);
-
-			_player.isEntryHidding = hiddenEntryHit.collider != null;
-
-            if (_player.isCrouching && hiddenEntryHit.collider != null)
-			{
-				Debug.Log("Llego");
-                _player.isHidden = true;
-                _parent.ChangeState(PlayerState.Hidden);
-            }
-            else if (( _upInput && _player.canHide && (hiddenSpotHitLeft || hiddenSpotHitRight) ) || isHidding)
-            {
-				isHidding = true;
-
-                if (hiddenSpotHitLeft && hiddenSpotHitRight)
-				{
-                    isHidding = false;
-                    _player.isHidden = true;
-                    _parent.ChangeState(PlayerState.Hidden);
-                }
-            }
-        }
-
-        private void CheckGround()
-		{
-			if (GetCurrentState() as MovementState? == MovementState.Ledge) return;
-
-			RaycastHit2D groundHitLeft = Physics2D.Raycast(
-				(Vector2)_player.transform.position - Vector2.right * _movementData.GroundRaycastAmplitude,
-				Vector2.down,
-				_movementData.GroundRaycastDistance,
-				_movementData.GroundLayer);
-
-			RaycastHit2D groundHitRight = Physics2D.Raycast(
-				(Vector2)_player.transform.position + Vector2.right * _movementData.GroundRaycastAmplitude,
-				Vector2.down,
-				_movementData.GroundRaycastDistance,
-				_movementData.GroundLayer);
-
-			if (groundHitLeft && groundHitRight && (_ctrlInput || _player.isCeilingBlocked))
-			{
-                ChangeState(MovementState.Crouch);
-            }
-			else if ( groundHitLeft || groundHitRight || _player.isClimbing || _player.isDroppingToLedge) // || _grabCooldownTimer > 0 
-            {
-				ChangeState(MovementState.Ground);
-			}
-			else if (!_player.isClimbing || !_player.isDroppingToLedge)
-			{
-				ChangeState(MovementState.Air);
-			}
+			if (_player.InputHandler.CrouchPressed) ToggleCrouch();
 		}
 
-		private void CheckCliff()
+		private void ToggleCrouch()
 		{
-			if (_cliffCooldownTimer > 0f) return;
-
-			RaycastHit2D cliffHitMiddle = Physics2D.Raycast(
-				(Vector2)_player.transform.position + Vector2.up * _movementData.CliffRaycastMiddleDistance,
-				Vector2.right * _player.FacingDirection,
-				_movementData.CliffMiddleHeight,
-				_movementData.CliffLayer
-			);
-
-			RaycastHit2D cliffHitTop = Physics2D.Raycast(
-				(Vector2)_player.transform.position + Vector2.up * _movementData.CliffRaycastTopDistance,
-				Vector2.right * _player.FacingDirection,
-				_movementData.CliffTopHeight,
-				_movementData.CliffLayer
-			);
-
-            RaycastHit2D groundHitLeft = Physics2D.Raycast(
-                (Vector2)_player.transform.position - Vector2.right * _movementData.GroundRaycastAmplitude,
-                Vector2.down,
-                _movementData.GroundRaycastDistance,
-                _movementData.GroundLayer);
-
-            RaycastHit2D groundHitRight = Physics2D.Raycast(
-                (Vector2)_player.transform.position + Vector2.right * _movementData.GroundRaycastAmplitude,
-                Vector2.down,
-                _movementData.GroundRaycastDistance,
-                _movementData.GroundLayer);
-
-            if (cliffHitMiddle && !cliffHitTop)
-            {
-				if (groundHitLeft && groundHitRight && !_player.isClimbing && !_player.isDropping) _player.isClimbing = true;
-                ChangeState(MovementState.Ledge);
-			}
+			_isCrouching = !_isCrouching;
+			ChangeState(_isCrouching ? MovementState.Crouch : MovementState.Ground);
 		}
 
-		public void ActivateCliffCooldown()
-		{
-			_cliffCooldownTimer = _movementData.ColldownTime;
-		}
 		
-		public void ActivateGrabbingCooldown()
-        {
-			_grabCooldownTimer = _movementData.ColldownTime;
-        }
-
-		private void DrawGroundLines()
-		{
-			//Left Line
-			Debug.DrawLine(
-				(Vector2)_player.transform.position - Vector2.right * _movementData.GroundRaycastAmplitude,
-				(Vector2)_player.transform.position -
-				Vector2.right * _movementData.GroundRaycastAmplitude +
-				Vector2.down * _movementData.GroundRaycastDistance,
-				Color.cyan
-			);
-
-			//RightLine
-			Debug.DrawLine(
-				(Vector2)_player.transform.position + Vector2.right * _movementData.GroundRaycastAmplitude,
-				(Vector2)_player.transform.position +
-				Vector2.right * _movementData.GroundRaycastAmplitude +
-				Vector2.down * _movementData.GroundRaycastDistance,
-				Color.cyan
-			);
-		}
-
-		private void DrawCliffLines(){
-			//Middle Line
-			Debug.DrawLine(
-				(Vector2)_player.transform.position + Vector2.up * _movementData.CliffRaycastMiddleDistance,
-				(Vector2)_player.transform.position +
-				Vector2.up * _movementData.CliffRaycastMiddleDistance +
-				Vector2.right * _movementData.CliffMiddleHeight * _player.FacingDirection,
-				Color.cyan
-			);
-
-			//HeadLine
-			Debug.DrawLine(
-				(Vector2)_player.transform.position + Vector2.up * _movementData.CliffRaycastTopDistance,
-				(Vector2)_player.transform.position +
-				Vector2.up * _movementData.CliffRaycastTopDistance +
-				Vector2.right * _movementData.CliffTopHeight * _player.FacingDirection,
-				Color.cyan
-			);
-		}
-
-        private void DrawDetectionLines()
-        {
-            Debug.DrawLine(
-                (Vector2)_player.transform.position - Vector2.right * _movementData.DetectionRaycastAmplitude,
-                (Vector2)_player.transform.position -
-                Vector2.right * _movementData.DetectionRaycastAmplitude +
-                Vector2.up * _movementData.DetectionRaycastDistance,
-                Color.cyan
-            );
-
-            Debug.DrawLine(
-                (Vector2)_player.transform.position + Vector2.right * _movementData.DetectionRaycastAmplitude,
-                (Vector2)_player.transform.position +
-                Vector2.right * _movementData.DetectionRaycastAmplitude +
-                Vector2.up * _movementData.DetectionRaycastDistance,
-                Color.cyan
-            );
-        }
-
-        private void DrawDetectionLine()
-        {
-            Vector2 rayOrigin = (Vector2)_player.transform.position + (Vector2.up * _movementData.DetectionRaycastOffSetY);
-
-            Vector2 rayDirection = Vector2.up * _movementData.DetectionRaycastSizeY;
-            Vector2 rayDestination = rayOrigin + rayDirection;
-
-            Debug.DrawLine(rayOrigin, rayDestination, Color.yellow);
-        }
-    }
+		
+		
+	}
 }

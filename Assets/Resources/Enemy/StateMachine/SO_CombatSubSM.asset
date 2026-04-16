@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627c1033079948a2a7c3b9ae19691158, type: 3}
+  m_Name: SO_CombatSubSM
+  m_EditorClassIdentifier: 
+  InitialState: {fileID: 11400000, guid: 50cce6f3fb7a4c945b7a03fb57fa0a02, type: 2}
+  CurrentState: {fileID: 11400000, guid: b96f1315dc49b6d4e9d0a4ce7e05c86f, type: 2}
+  States:
+  - {fileID: 11400000, guid: 50cce6f3fb7a4c945b7a03fb57fa0a02, type: 2}
+  - {fileID: 11400000, guid: b96f1315dc49b6d4e9d0a4ce7e05c86f, type: 2}
+  PlayerLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  VisionBoxSize: {x: 6, y: 2}
+  VisionOffset: 0
+  VisionDistance: 3
+  AttackBoxSize: {x: 2, y: 2}
+  AttackOffset: 0
+  AttackDistance: 1

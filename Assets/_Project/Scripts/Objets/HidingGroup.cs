@@ -14,19 +14,20 @@ public class HidingGroup : MonoBehaviour
     public void playerLeftSection(PlayerController player)
     {
         _sectionsOccupied--;
-        // Solo si salió de TODAS las secciones, deja de estar oculto
+        // Solo si saliï¿½ de TODAS las secciones, deja de estar oculto
         if (_sectionsOccupied <= 0)
         {
             _sectionsOccupied = 0;
-            player.isHidden = false;
+            //player.isHidden = false;
         }
     }
 
     private void UpdatePlayerStatus(PlayerController player)
     {
+        /*
         if (player.isCrouching)
         {
             player.isHidden = true;
-        }
+        }*/
     }
 }
