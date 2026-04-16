@@ -24,11 +24,12 @@ public class HidingBote : MonoBehaviour
 
         if (collision.TryGetComponent(out PlayerController player))
         {
+            /*
             if (player.isCrouching && player.isHidden)
             {
                 player.isHidden = true;
                 SetCeilingActive(true);
-            }
+            }*/
         }
     }
 
@@ -38,11 +39,12 @@ public class HidingBote : MonoBehaviour
 
         if (collision.TryGetComponent(out PlayerController player))
         {
+            /*
             if (player.isCrouching && player.isHidden)
             {
                 player.isHidden = true;
                 SetCeilingActive(true);
-            }
+            }*/
 
         }
 
@@ -54,7 +56,7 @@ public class HidingBote : MonoBehaviour
 
         if (collision.TryGetComponent(out PlayerController player))
         {
-            player.isHidden = false;
+            //player.isHidden = false;
             SetCeilingActive(false);
         }
     }
