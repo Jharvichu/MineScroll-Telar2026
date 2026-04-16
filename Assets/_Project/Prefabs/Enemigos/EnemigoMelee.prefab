@@ -218,7 +218,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8526764668018578480}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -300,16 +300,18 @@ MonoBehaviour:
   pointB: {fileID: 1909063468518461499}
   patrolSpeed: 2
   suspiciousSpeed: 3
-  chaseSpeed: 6
-  farVisionDistance: 8
-  nearVisionDistance: 5
+  chaseSpeed: 3
+  farVisionDistance: 5
+  nearVisionDistance: 3
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
   catchDistance: 1.5
-  visionHeightOffset: -0.5
-  reactionTime: 0.3
-  searchTime: 3
+  loseDistance: 10
+  chasePatience: 3
+  visionHeightOffset: 0
+  reactionTime: 2
+  searchTime: 5
 --- !u!114 &8222857313640187858
 MonoBehaviour:
   m_ObjectHideFlags: 0
