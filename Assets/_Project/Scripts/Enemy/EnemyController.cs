@@ -23,6 +23,10 @@ public class EnemyController : MonoBehaviour
     public LayerMask playerLayer;
     public float catchDistance = 2.0f; 
     
+    [Header("Configuración de Persecución")]
+    public float loseDistance = 10f; // Distancia máxima para dejar de perseguir
+    public float chasePatience = 2f; // Tiempo que sigue corriendo tras perderte de vista
+    private float chaseTimer = 0f;
     
     [Tooltip("Ajusta la altura del láser. Valores negativos lo bajan a la cintura/piernas.")]
     public float visionHeightOffset = -0.5f;
@@ -83,9 +87,26 @@ public class EnemyController : MonoBehaviour
             case State.Chase:
                 if (targetPlayer != null)
                 {
+                    float distanceToPlayer = Vector2.Distance(transform.position, targetPlayer.transform.position);
+                    bool canSeePlayer = IsPlayerInVision(); // Nueva función de ayuda
+                    
                     MoveTowards(targetPlayer.transform.position, chaseSpeed);
                     lastKnownPosition = targetPlayer.transform.position;
 
+                    if (!canSeePlayer || distanceToPlayer > loseDistance || targetPlayer.isHidden)
+                    {
+                        chaseTimer += Time.deltaTime;
+                        if (chaseTimer >= chasePatience)
+                        {
+                            Debug.Log("Jugador perdido. Iniciando búsqueda...");
+                            ChangeState(State.Search);
+                        }
+                    }
+                    else
+                    {
+                        // Si lo vuelve a ver, reiniciamos el temporizador de paciencia
+                        chaseTimer = 0f;
+                    }
                     
                     if (Vector2.Distance(transform.position, targetPlayer.transform.position) <= catchDistance)
                     {
@@ -121,6 +142,18 @@ public class EnemyController : MonoBehaviour
                 DetectPlayer();
                 break;
         }
+    }
+    
+    bool IsPlayerInVision()
+    {
+        Vector2 originPoint = new Vector2(transform.position.x, transform.position.y + visionHeightOffset);
+        RaycastHit2D hit = Physics2D.Raycast(originPoint, Vector2.right * facingDirection, farVisionDistance, playerLayer);
+    
+        if (hit.collider != null)
+        {
+            return hit.collider.GetComponent<Player.PlayerController>() != null;
+        }
+        return false;
     }
 
     void DetectPlayer()
@@ -185,6 +218,7 @@ public class EnemyController : MonoBehaviour
     {
         currentState = newState;
         timer = 0f;
+        chaseTimer = 0f;
     }
 
     void Flip(int direction)

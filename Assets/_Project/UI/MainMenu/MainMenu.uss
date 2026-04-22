@@ -24,21 +24,21 @@ Button {
     height: 80px;
     margin: 20px;
     font-size: 60px;
-    background-color: white;
-    color: black;
     transition: background-color 0.15s, scale 0.1s;
+    
+    transition: scale 0.1s, -unity-background-image-tint-color 0.1s;
 }
 
 Button:hover {
-    background-color: rgb(255, 127, 102);
-    scale: 1.05;
-    -unity-background-image-tint-color: rgb(131, 124, 99);
+       scale: 1.1 !important;   
+    color: red;
+    -unity-text-outline-width: 0;
+    
 }
 
 Button:active {
-    background-color: orange;
     scale: 0.95;
-    -unity-background-image-tint-color: rgb(131, 124, 99);
+    color: red !important;
 }
 
 .unity-text-element {
