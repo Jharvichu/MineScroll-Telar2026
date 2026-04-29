@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -29,6 +30,7 @@ public class RifleGuardController : MonoBehaviour
     public float aimTime = 0.2f;    
     public float searchTime = 3f;    
     private float timer = 0f;
+    private bool disparado = false;
 
     private int facingDirection = 1;
     private Player.PlayerController targetPlayer; // angie 
@@ -73,22 +75,10 @@ public class RifleGuardController : MonoBehaviour
                 timer += Time.deltaTime;
                 if (timer >= aimTime)
                 {
-                    if (targetPlayer != null && !targetPlayer.isHidden)
+                    if (targetPlayer != null && !targetPlayer.isHidden && !disparado)
                     {
-                        Debug.Log("¡BANG! Un solo tiro. GAME OVER.");
-                        PlayerPrefs.SetString("LastLevel", SceneManager.GetActiveScene().name);
-                        string escenaActual = SceneManager.GetActiveScene().name;
-
-                        string gameOver = escenaActual switch {
-                            "Nivel1" => "GameOver1",
-                            "Nivel2" => "GameOver2",
-                            "Nivel3" => "GameOver3",
-                            "Nivel4" => "GameOver3",
-                            _ => "GameOver1" // fallback
-                        };
-
-                        PlayerPrefs.SetString("LastLevel", escenaActual);
-                        SceneManager.LoadScene(gameOver);
+                        StartCoroutine(DispararJugador());
+                        disparado = true;
                     }
                     else
                     {
@@ -121,7 +111,34 @@ public class RifleGuardController : MonoBehaviour
                 break;
         }
     }
+    
+    private IEnumerator DispararJugador()
+    {
+        targetPlayer.canControl = false;
+        targetPlayer.Rigidbody2D.linearVelocity = Vector2.zero;
+        targetPlayer.AnimatorController.SetDeath();
 
+        Debug.Log("¡GAME OVER! El guardia te está atacando...");
+        
+        yield return new WaitForSeconds(1.5f);
+
+
+        Debug.Log("¡BANG! Un solo tiro. GAME OVER.");
+        PlayerPrefs.SetString("LastLevel", SceneManager.GetActiveScene().name);
+        string escenaActual = SceneManager.GetActiveScene().name;
+
+        string gameOver = escenaActual switch {
+            "Nivel1" => "GameOver1",
+            "Nivel2" => "GameOver2",
+            "Nivel3" => "GameOver3",
+            "Nivel4" => "GameOver3",
+            _ => "GameOver1" // fallback
+        };
+
+        PlayerPrefs.SetString("LastLevel", escenaActual);
+        SceneManager.LoadScene(gameOver);
+    }    
+    
     void DetectPlayer()
     {
         

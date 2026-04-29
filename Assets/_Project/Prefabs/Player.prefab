@@ -116,7 +116,7 @@ Transform:
   m_GameObject: {fileID: 5641504033893921068}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.7413845, z: -10}
+  m_LocalPosition: {x: -22.78003, y: -1.2581584, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -157,7 +157,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.8
+  orthographic size: 10.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -545,7 +545,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rootStateMachine: {fileID: 11400000, guid: 23263a4299f804442935a0945c2fad4e, type: 2}
   canControl: 1
+  isPlayerInside: 0
   Sombra: {fileID: 4056058242068804794}
+  Camera: {fileID: 0}
   canHide: 0
   isHidden: 0
   isCrouching: 0

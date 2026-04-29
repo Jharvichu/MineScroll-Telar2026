@@ -44,6 +44,11 @@ namespace Player
         {
         }
 
+        public void SetDeath()
+        {
+            _playerAnimator.SetTrigger("Death");
+        }
+
         public void SetJumping(bool isJumping)
         {
 

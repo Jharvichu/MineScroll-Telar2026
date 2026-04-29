@@ -243,11 +243,12 @@ public class EnemyController : MonoBehaviour
         
         targetPlayer.canControl = false;
         targetPlayer.Rigidbody2D.linearVelocity = Vector2.zero;
+        targetPlayer.AnimatorController.SetDeath();
 
         Debug.Log("¡GAME OVER! El guardia te está atacando...");
 
         
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
 
 
         PlayerPrefs.SetString("LastLevel", SceneManager.GetActiveScene().name);
