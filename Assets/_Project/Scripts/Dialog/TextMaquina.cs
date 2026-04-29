@@ -80,7 +80,7 @@ public class TextMaquina : MonoBehaviour
         // --- FINALIZACIÓN ---
         if (activarSiguienteScript && objetoDialogoOrilla != null)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(3f);
             objetoDialogoOrilla.SendMessage("IniciarDialogoOrilla", SendMessageOptions.DontRequireReceiver);
         }
     }

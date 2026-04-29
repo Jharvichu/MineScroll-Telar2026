@@ -45,6 +45,7 @@ namespace Player {
             {
                 Sombra.SetActive(true);
             }
+          
 
             base.Update();
         }
