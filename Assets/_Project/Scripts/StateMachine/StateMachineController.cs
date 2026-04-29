@@ -16,12 +16,29 @@ namespace StateMachine {
 		}
 
 		protected virtual void Update() {
-			_rootStateMachine.UpdateState();
-		}
+            Player.PlayerController player = this as Player.PlayerController;
+
+            // 🔥 BLOQUEO GLOBAL
+            if (player != null && !player.canControl)
+                return;
+
+            _rootStateMachine.UpdateState();
+        }
 
 		protected virtual void FixedUpdate() {
-			_rootStateMachine.FixedUpdateState();
-		}
+            Player.PlayerController player = this as Player.PlayerController;
+
+            // 🔥 BLOQUEO GLOBAL DE FÍSICA
+            if (player != null && !player.canControl)
+            {
+                if (player.Rigidbody2D != null)
+                    player.Rigidbody2D.linearVelocity = Vector2.zero;
+
+                return;
+            }
+
+            _rootStateMachine.FixedUpdateState();
+        }
 
 		public System.Enum GetCurrentState() {
 			var currentMachine = _rootStateMachine.State as AStateMachine;

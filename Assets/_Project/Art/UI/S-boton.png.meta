@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d0bba964fd149f9448d5ad3aba7d827f
+guid: 386f0562bb5668241a532b1ddefb78dc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5198204120218476116
-    second: UI-CAMARA-FOTO-_0
+      213: -9174369622455244274
+    second: S-boton_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI-CAMARA-FOTO-_0
+      name: S-boton_0
       rect:
         serializedVersion: 2
-        x: 35
-        y: 31
-        width: 58
-        height: 59
+        x: 17
+        y: 19
+        width: 263
+        height: 251
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ca1e768d4e44cd7b0800000000000000
-      internalID: -5198204120218476116
+      spriteID: e0aab6faf671ea080800000000000000
+      internalID: -9174369622455244274
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      UI-CAMARA-FOTO-_0: -5198204120218476116
+      S-boton_0: -9174369622455244274
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

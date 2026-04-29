@@ -6,43 +6,38 @@ using UnityEngine;
 public class TrigeerMoto : MonoBehaviour
 {
     public List<MotoMove> motos = new List<MotoMove>();
-    public float duracionEscena = 2f; // ajusta esto
+    public float duracionEscena = 2f;
+    
+
+    private PlayerController controller;
+    public System.Action OnFinishedMotos;
 
     public void ActivarMotos(PlayerController controller)
     {
-        StartCoroutine(SecuenciaMotos(controller));
+        this.controller = controller;
+        StartCoroutine(SecuenciaMotos());
     }
 
-    IEnumerator SecuenciaMotos(PlayerController controller)
+    IEnumerator SecuenciaMotos()
     {
-        // 🔒 Bloquear jugador
+        // 🔒 bloquear jugador
         if (controller != null)
         {
             controller.canControl = false;
-            
-           
             controller.Rigidbody2D.linearVelocity = Vector2.zero;
             controller.Rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
+            Input.ResetInputAxes();
         }
 
-        // 🚀 Activar motos
         foreach (MotoMove moto in motos)
         {
             moto.ActivateMoto(controller);
         }
 
-        // ⏳ Esperar a que termine la escena
         yield return new WaitForSeconds(duracionEscena);
 
-        // 🔓 Devolver control
-        if (controller != null)
-        {
-            controller.canControl = true;
-        
-         
-            controller.Rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
-        }
-
-        Destroy(gameObject);
+        OnFinishedMotos?.Invoke();
     }
-}
+
+
+    }
