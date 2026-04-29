@@ -1,19 +1,13 @@
 fileFormatVersion: 2
-guid: 255f8395d119ba24daa101e85a5f0dac
+guid: df231b09369be7746bb5faa558e3a3c9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7385712016583563658
-    second: escenarios-rio-capa-arriba_0
+      213: -3328875435441040979
+    second: Pasto-2_0
   - first:
-      213: 6744303122115563992
-    second: escenarios-rio-capa-arriba_1
-  - first:
-      213: 5617833869166354766
-    second: escenarios-rio-capa-arriba_2
-  - first:
-      213: 2160197871599795726
-    second: escenarios-rio-capa-arriba_3
+      213: 4964401754570604824
+    second: Pasto-2_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -81,7 +75,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 16384
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -105,30 +99,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: escenarios-rio-capa-arriba_0
+      name: Pasto-2_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 3211
-        height: 1006
+        x: 13
+        y: 9
+        width: 221
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 676e3365d0ea08990800000000000000
-      internalID: -7385712016583563658
+      spriteID: da15309bd657dc1d0800000000000000
+      internalID: -3328875435441040979
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: escenarios-rio-capa-arriba_1
+      name: Pasto-2_1
       rect:
         serializedVersion: 2
-        x: 3161
-        y: 78
-        width: 97
-        height: 32
+        x: 240
+        y: 26
+        width: 108
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,52 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8d1914be4f3989d50800000000000000
-      internalID: 6744303122115563992
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: escenarios-rio-capa-arriba_2
-      rect:
-        serializedVersion: 2
-        x: 3342
-        y: 16
-        width: 19
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e41a1d2b32e86fd40800000000000000
-      internalID: 5617833869166354766
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: escenarios-rio-capa-arriba_3
-      rect:
-        serializedVersion: 2
-        x: 3350
-        y: 0
-        width: 71
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e0eb24dd4809afd10800000000000000
-      internalID: 2160197871599795726
+      spriteID: 811c18fd71915e440800000000000000
+      internalID: 4964401754570604824
       vertices: []
       indices: 
       edges: []
@@ -223,10 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      escenarios-rio-capa-arriba_0: -7385712016583563658
-      escenarios-rio-capa-arriba_1: 6744303122115563992
-      escenarios-rio-capa-arriba_2: 5617833869166354766
-      escenarios-rio-capa-arriba_3: 2160197871599795726
+      Pasto-2_0: -3328875435441040979
+      Pasto-2_1: 4964401754570604824
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -80,7 +80,7 @@ public class CinematicPrologue : MonoBehaviour
         AudioManager.Instance.PlaySFX(sfxPrepareCamera);
         if (encuadre1 != null) yield return MoverCamara(encuadre1.position, 0.5f);
         if(hudCamaraPOV != null) hudCamaraPOV.SetActive(true);
-        yield return EjecutarQTE(150f, 90f, 45f, new Vector2(0, 0), true, 0f);
+        yield return EjecutarQTE(150f, 90f, 45f, new Vector2(0, -150), true, 0f);
         if(hudCamaraPOV != null) hudCamaraPOV.SetActive(false);
         yield return MoverCamara(posicionCamaraOriginal, 0.5f);
 
@@ -90,7 +90,7 @@ public class CinematicPrologue : MonoBehaviour
         AudioManager.Instance.PlaySFX(sfxPrepareCamera);
         if (encuadre2 != null) yield return MoverCamara(encuadre2.position, 0.5f);
         if(hudCamaraPOV != null) hudCamaraPOV.SetActive(true);
-        yield return EjecutarQTE(180f, 200f, 30f, new Vector2(150, 100), true, 0f);
+        yield return EjecutarQTE(180f, 200f, 30f, new Vector2(0, -150), true, 0f);
         if(hudCamaraPOV != null) hudCamaraPOV.SetActive(false);
         yield return MoverCamara(posicionCamaraOriginal, 0.5f);
 
@@ -126,13 +126,13 @@ public class CinematicPrologue : MonoBehaviour
         // 6.
         yield return new WaitForSeconds(1f); 
         if(encuadreCamioneta != null) yield return MoverCamara(encuadreCamioneta.position, 0.2f);
-        mainCamera.orthographicSize = tamañoCamaraOriginal - 2f; 
+        mainCamera.orthographicSize = tamañoCamaraOriginal; 
         Time.timeScale = 0.3f; 
         
         if(hudCamaraPOV != null) hudCamaraPOV.SetActive(true);
         animCarrillo.Play("Foto");
         AudioManager.Instance.PlaySFX(sfxPrepareCamera);
-        yield return EjecutarQTE(400f, 135f, 60f, new Vector2(0, -100), false, tiempoLimiteCamioneta);
+        yield return EjecutarQTE(400f, 135f, 60f, new Vector2(0, -150), false, tiempoLimiteCamioneta);
         if(hudCamaraPOV != null) hudCamaraPOV.SetActive(false);
         
         // 7.
