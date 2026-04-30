@@ -10,9 +10,16 @@ public class PhotoZone : MonoBehaviour
 
     [SerializeField] private PlayerController playerController;
     private bool isPlayerInside = false;
+    
+    public int cantidadFoto = 1;
 
     private void Awake()
     {
+    }
+
+    private void Update()
+    {
+        //Debug.Log(cantidadFoto);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -20,6 +27,8 @@ public class PhotoZone : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             playerController.isPlayerInside = true;
+            playerController.Camera.photoZone = this;
+            playerController.Camera.photoCount = cantidadFoto;
             if (uiAnimator != null)
             {
                 uiAnimator.SetBool(boolParameterName, true);
