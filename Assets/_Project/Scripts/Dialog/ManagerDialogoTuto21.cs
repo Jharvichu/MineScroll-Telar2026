@@ -5,8 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class ManagerDialogoTuto1 : MonoBehaviour
+public class ManagerDialogoTuto21 : MonoBehaviour
 {
+    public bool dialogoTerminado = false;
     [System.Serializable]
     public class DialogueImage
     {
@@ -33,8 +34,12 @@ public class ManagerDialogoTuto1 : MonoBehaviour
     public void IniciarDialogo(PlayerController p)
     {
         player = p;
+
+        dialogoTerminado = false; // 🔥 reset
+
         if (player != null)
             player.canControl = false;
+
         panel.SetActive(false);
         StartCoroutine(PlayDialogue());
     }
@@ -46,6 +51,7 @@ public class ManagerDialogoTuto1 : MonoBehaviour
         {
             player.canControl = false;
         }
+
         if (AudioManager.Instance != null)
             AudioManager.Instance.SetBGMParameter("activar_ambiente", 1f);
 
@@ -53,10 +59,14 @@ public class ManagerDialogoTuto1 : MonoBehaviour
         {
             yield return StartCoroutine(ShowImage(line));
         }
+
         if (player != null)
         {
             player.canControl = true;
         }
+
+        // 🔥 AQUÍ VA
+        dialogoTerminado = true;
     }
 
     IEnumerator ShowImage(DialogueImage line)
@@ -80,6 +90,7 @@ public class ManagerDialogoTuto1 : MonoBehaviour
         if (player != null)
         {
             player.canControl = true;
+            dialogoTerminado = true;
         }
     }
 }

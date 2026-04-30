@@ -10,7 +10,7 @@ public class TrigeerMoto : MonoBehaviour
     
 
     private PlayerController controller;
-    public System.Action OnFinishedMotos;
+    public event System.Action OnFinishedMotos;
 
     public void ActivarMotos(PlayerController controller)
     {

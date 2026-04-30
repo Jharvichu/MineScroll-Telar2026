@@ -17,6 +17,7 @@ public class DIalog1Tuto1 : MonoBehaviour
             if (player != null)
             {
                 player.canControl = false;
+
             }
 
             if (dialogo != null)

@@ -4,31 +4,29 @@ using UnityEngine;
 
 public class TrigeerLetra : MonoBehaviour
 {
-    public GameObject popup;          // popup W
-    public GameObject popupSalida;    // popup S
+    public GameObject triggerSalidaPrefab;
+    public Transform spawnSalidaPoint;
 
-    public KeyCode tecla;
+    public GameObject popup;          // UI W
+    public KeyCode tecla = KeyCode.W;
 
     public TrigeerMoto triggerMoto;
-    public bool esSalidaEscondite;
 
     private bool esperando = false;
-    private bool esperandoS = false;
-
-    private bool yaPuedeSalir = false;
+    private bool yaInicioEvento = false;
 
     private PlayerController controller;
 
     private void Start()
     {
-        // 🔥 escuchar cuando terminan las motos
+        // Escuchar cuando terminan las motos
         if (triggerMoto != null)
-            triggerMoto.OnFinishedMotos += ActivarPopupS;
+            triggerMoto.OnFinishedMotos += FinalizarEvento;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Character"))
+        if (other.CompareTag("Character") && !yaInicioEvento)
         {
             controller = other.GetComponent<PlayerController>();
 
@@ -38,46 +36,28 @@ public class TrigeerLetra : MonoBehaviour
                 controller.Rigidbody2D.linearVelocity = Vector2.zero;
             }
 
-            popup.SetActive(true); // 🔥 aparece W
+            popup.SetActive(true);
             esperando = true;
         }
     }
 
     void Update()
     {
-        // 🔥 INPUT W
         if (esperando && Input.GetKeyDown(tecla))
         {
             popup.SetActive(false);
-
-            if (controller != null)
-                controller.canControl = true;
-
-            StartCoroutine(ExecuteAction());
             esperando = false;
-        }
 
-        // 🔥 INPUT S (FINAL)
-        if (esperandoS && Input.GetKeyDown(KeyCode.S))
-        {
-            if (!yaPuedeSalir) return;
-            popupSalida.SetActive(false);
+            if (controller != null) controller.canControl = true;
 
-            if (controller != null)
-            {
-                controller.isHidden = false;
-                controller.Animator.SetBool("isHidden", false);
-                controller.canControl = true;
-            }
-
-            esperandoS = false;
-
-            Destroy(gameObject); // 🔥 SOLO AQUÍ se elimina el trigger
+            StartCoroutine(IniciarEvento());
         }
     }
 
-    IEnumerator ExecuteAction()
+    IEnumerator IniciarEvento()
     {
+        yaInicioEvento = true;
+
         yield return new WaitForSeconds(0.1f);
 
         if (controller != null)
@@ -86,20 +66,37 @@ public class TrigeerLetra : MonoBehaviour
             Input.ResetInputAxes();
         }
 
-        // 🔥 CASO MOTOS
         if (triggerMoto != null)
         {
             triggerMoto.ActivarMotos(controller);
         }
     }
 
-    // 🔥 SE LLAMA CUANDO TERMINAN LAS MOTOS
-    void ActivarPopupS()
+    // 🔥 SE EJECUTA CUANDO TERMINAN LAS MOTOS
+    void FinalizarEvento()
     {
-        if (popupSalida != null)
-            popupSalida.SetActive(true);
+        if (controller != null)
+        {
+            controller.canControl = true;
+        }
+        if (triggerSalidaPrefab != null && spawnSalidaPoint != null)
+        {
+            GameObject obj = Instantiate(triggerSalidaPrefab, spawnSalidaPoint.position, Quaternion.identity);
 
-        esperandoS = true; // ahora puede presionar S
-        yaPuedeSalir = true;
+            TriggerPopupS s = obj.GetComponent<TriggerPopupS>();
+
+            if (s != null)
+            {
+                s.Activar(controller); // 🔥 activación directa
+            }
+        }
+        Destroy(gameObject); // elimina el trigger
     }
+
+    private void OnDestroy()
+    {
+        if (triggerMoto != null)
+            triggerMoto.OnFinishedMotos -= FinalizarEvento;
+    }
+
 }

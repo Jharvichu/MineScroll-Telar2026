@@ -1,8 +1,9 @@
+using FMODUnity;
+using Player;
 using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using FMODUnity;
 
 public class CinematicPrologue : MonoBehaviour
 {
@@ -60,6 +61,11 @@ public class CinematicPrologue : MonoBehaviour
     private bool intentoTerminado = false;
     private bool exitoQTE = false;
 
+    [Header("Trigger de diálogo final")]
+    public Transform triggerDialog1;
+    public DIalog1Tuto21 triggerDialog;
+    private PlayerController playerController;
+
     void Start()
     {
         tamañoCamaraOriginal = mainCamera.orthographicSize;
@@ -67,8 +73,9 @@ public class CinematicPrologue : MonoBehaviour
         escalaOriginalCarrillo = actorCarrillo.localScale; 
         
         if (hudCamaraPOV != null) hudCamaraPOV.SetActive(false);
-        if (transitionPanel != null) transitionPanel.SetActive(false); 
-        
+        if (transitionPanel != null) transitionPanel.SetActive(false);
+        playerController = actorCarrillo.GetComponent<PlayerController>();
+
         StartCoroutine(SecuenciaCinematica());
     }
 
@@ -139,12 +146,29 @@ public class CinematicPrologue : MonoBehaviour
         Time.timeScale = 1f;
         mainCamera.orthographicSize = tamañoCamaraOriginal;
         yield return MoverCamara(posicionCamaraOriginal, 0.5f);
-        
+
         // 8.
-        yield return new WaitForSeconds(1.5f); 
+        yield return new WaitForSeconds(1.5f);
         actorCarrillo.gameObject.SetActive(true);
 
-        actorCarrillo.localScale = new Vector3(Mathf.Abs(escalaOriginalCarrillo.x), escalaOriginalCarrillo.y, escalaOriginalCarrillo.z);
+        actorCarrillo.localScale = new Vector3(
+            Mathf.Abs(escalaOriginalCarrillo.x),
+            escalaOriginalCarrillo.y,
+            escalaOriginalCarrillo.z
+        );
+
+        // ir al trigger
+        yield return MoverActor(actorCarrillo, animCarrillo, triggerDialog.transform.position);
+
+        animCarrillo.Play("Idle");
+
+        // activar diálogo manualmente
+        triggerDialog.Activar(actorCarrillo.GetComponent<PlayerController>());
+
+        // esperar que termine
+        yield return new WaitUntil(() => triggerDialog.DialogoTerminado);
+
+        // ahora sí ir al final
         yield return MoverActor(actorCarrillo, animCarrillo, puntoFinal.position);
 
         Debug.Log("Cinemática Terminada. Iniciando Transición Final...");
