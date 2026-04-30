@@ -14887,7 +14887,7 @@ MonoBehaviour:
   velocidadEscritura: 0.05
   dialogueLines:
   - image: {fileID: -8551478148450923529, guid: fd2bbf71e2e327441ba3265f390deb1f, type: 3}
-    textoAMostrar: Un momento, amigo
+    textoAMostrar: Un momento, amigo.
     duration: 2
 --- !u!1 &786160632
 GameObject:
@@ -21055,8 +21055,10 @@ MonoBehaviour:
   velocidadEscritura: 0.05
   dialogueLines:
   - image: {fileID: -8551478148450923529, guid: fd2bbf71e2e327441ba3265f390deb1f, type: 3}
-    textoAMostrar: "Si hay tantas latas por aqu\xED\n\xBFCu\xE1nto mercurio habr\xE1
-      en el agua?"
+    textoAMostrar: "Si hay tantas latas por aqu\xED..."
+    duration: 2
+  - image: {fileID: -8551478148450923529, guid: fd2bbf71e2e327441ba3265f390deb1f, type: 3}
+    textoAMostrar: "\xBFcu\xE1nto mercurio habr\xE1 en el agua?"
     duration: 2
 --- !u!1 &1165055746
 GameObject:
@@ -30417,7 +30419,7 @@ MonoBehaviour:
   velocidadEscritura: 0.05
   dialogueLines:
   - image: {fileID: -8551478148450923529, guid: fd2bbf71e2e327441ba3265f390deb1f, type: 3}
-    textoAMostrar: "Est\xE1n armados como los del Vraem"
+    textoAMostrar: "Est\xE1n armados como los del Vraem..."
     duration: 2
 --- !u!1 &1646708341 stripped
 GameObject:

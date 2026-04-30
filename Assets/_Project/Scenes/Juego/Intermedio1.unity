@@ -2804,7 +2804,7 @@ MonoBehaviour:
   tiempoLimiteCamioneta: 1.8
   transitionPanel: {fileID: 1734195503}
   transitionTime: 1
-  siguienteEscena: Nivel2
+  siguienteEscena: Intermedio2
   triggerDialog1: {fileID: 1678976619}
   triggerDialog: {fileID: 1678976622}
 --- !u!1 &412523347
@@ -11951,17 +11951,17 @@ MonoBehaviour:
   velocidadEscritura: 0.05
   dialogueLines:
   - image: {fileID: -8551478148450923529, guid: fd2bbf71e2e327441ba3265f390deb1f, type: 3}
-    textoAMostrar: No son mayores que mi primita
+    textoAMostrar: No son mayores que mi primita.
     duration: 2
   - image: {fileID: -8551478148450923529, guid: fd2bbf71e2e327441ba3265f390deb1f, type: 3}
-    textoAMostrar: "No deben tener m\xE1s de 15 a\xF1os"
+    textoAMostrar: "No deben tener m\xE1s de 15 a\xF1os."
     duration: 2
   - image: {fileID: -8551478148450923529, guid: fd2bbf71e2e327441ba3265f390deb1f, type: 3}
-    textoAMostrar: "Hay un mont\xF3n de avisos en Cusco que ofrecen trabajos en Madre
-      de Dios"
+    textoAMostrar: "Un mont\xF3n de avisos en Cusco ofrecen trabajos en Madre de
+      Dios."
     duration: 2
   - image: {fileID: -8551478148450923529, guid: fd2bbf71e2e327441ba3265f390deb1f, type: 3}
-    textoAMostrar: "Mi prima pudo estar aqu\xED"
+    textoAMostrar: "Mi prima pudo estar aqu\xED..."
     duration: 2
 --- !u!1 &1801401557
 GameObject:
