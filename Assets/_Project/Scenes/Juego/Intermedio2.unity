@@ -1207,7 +1207,7 @@ MonoBehaviour:
   textoUI: {fileID: 1672967910}
   velocidadEscritura: 0.05
   dialogueLines:
-  - textoAMostrar: 'Esta historia apenas continua '
+  - textoAMostrar: 'Esta historia apenas comienza... '
     duration: 4
 --- !u!1 &568454426
 GameObject:
