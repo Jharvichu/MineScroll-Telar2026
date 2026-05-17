@@ -10,9 +10,42 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Send message to Discord
+      # Recuerda que NO necesitas actions/checkout aquí, ya que los datos los tomamos del contexto de GitHub
+      - name: Send embed message to Discord
+        env:
+          DISCORD_WEBHOOK: "https://discord.com/api/webhooks/1505473610624667772/Rgj9Oz3qnFIi4UMgNX7Q_lOdGO9qZEIumUT5PLJqOZdfV67_Kd348hsyW6y47SXq4FG1"
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
+          COMMIT_URL: ${{ github.event.head_commit.url }}
+          COMMIT_SHA: ${{ github.sha }}
+          AUTHOR: ${{ github.actor }}
+          BRANCH: ${{ github.ref_name }}
+          REPO: ${{ github.repository }}
         run: |
-          curl -H "Content-Type: application/json" \
-          -X POST \
-           -d "{\"content\":\"🚀 Nuevo commit en *${{ github.ref_name }}*\\n👤 Autor: ${{ github.actor }}\\n📝 Commit: ${{ github.event.head_commit.message }}\\n🔗 Link: ${{ github.event.head_commit.url }}\\n📦 Repo: ${{ github.repository }}\"}" \
-          "https://discord.com/api/webhooks/1505473610624667772/Rgj9Oz3qnFIi4UMgNX7Q_lOdGO9qZEIumUT5PLJqOZdfV67_Kd348hsyW6y47SXq4FG1"
+          # Extraemos los primeros 7 caracteres del hash para el formato corto
+          SHORT_SHA=${COMMIT_SHA:0:7}
+          
+          # Construimos el JSON usando jq para evitar que comillas o saltos de línea rompan el formato
+          JSON_PAYLOAD=$(jq -n \
+            --arg branch "$BRANCH" \
+            --arg author "$AUTHOR" \
+            --arg msg "$COMMIT_MSG" \
+            --arg url "$COMMIT_URL" \
+            --arg repo "$REPO" \
+            --arg sha "$SHORT_SHA" \
+            '{
+              embeds: [{
+                title: "🚀 Nuevo Commit en \($repo)",
+                url: $url,
+                color: 5814783,
+                fields: [
+                  { name: "👤 Autor", value: $author, inline: true },
+                  { name: "🌿 Rama", value: $branch, inline: true },
+                  { name: "🔢 Commit ID", value: "[\(`$sha`)](\($url))", inline: true },
+                  { name: "📝 Mensaje", value: $msg }
+                ],
+                footer: { text: "GitHub Actions" }
+              }]
+            }')
+
+          # Enviamos la petición a Discord
+          curl -H "Content-Type: application/json" -X POST -d "$JSON_PAYLOAD" "$DISCORD_WEBHOOK"
