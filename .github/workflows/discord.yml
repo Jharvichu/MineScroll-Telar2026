@@ -71,7 +71,7 @@ jobs:
                   { name: "🔢 Commit ID", value: ("[`" + $sha + "`](" + $url + ")"), inline: true },
                   { name: "📝 Mensaje", value: $msg }
                 ],
-                footer: { text: "GitHub Actions" }
+                footer: { text: "GitHub Actions • '$(date +"%Y-%m-%d %H:%M:%S")'" }
               }]
             }')
 
