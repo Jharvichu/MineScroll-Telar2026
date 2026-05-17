@@ -18,8 +18,10 @@ jobs:
           REPO: ${{ github.repository }}
         run: |
           SHORT_SHA=${COMMIT_SHA:0:8}
-          CURRENT_DATE=$(date +"%Y-%m-%d %H:%M:%S") 
           REPO_NAME=${REPO#*/}
+
+          export TZ="America/Lima"
+          CURRENT_DATE=$(date '+%A, %d de %B de %Y - %I:%M %p')
 
           case "$BRANCH" in
             main|master)
