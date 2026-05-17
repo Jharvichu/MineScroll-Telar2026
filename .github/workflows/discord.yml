@@ -21,7 +21,7 @@ jobs:
           REPO_NAME=${REPO#*/}
 
           export TZ="America/Lima"
-          CURRENT_DATE=$(date '+%A, %d de %B de %Y - %I:%M %p')
+          CURRENT_DATE=$(date '+%A, %d %B %Y - %I:%M %p')
 
           case "$BRANCH" in
             main|master)
