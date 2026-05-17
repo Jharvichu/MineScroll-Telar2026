@@ -10,22 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Send Discord Embed
+      - name: Send message to Discord
         run: |
-          COMMIT_MSG=$(git log -1 --pretty=%s)
-          COMMIT_URL="https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
-          REPO_NAME="${{ github.repository }}"
-          AUTHOR="${{ github.actor }}"
-          BRANCH="${GITHUB_REF#refs/heads/}"
-
           curl -H "Content-Type: application/json" \
           -X POST \
-          -d "{
-            \"username\": \"GitHub\",
-            \"embeds\": [{
-              \"title\": \"[$REPO_NAME:$BRANCH] 1 new commit\",
-              \"description\": \"[$(echo ${{ github.sha }} | cut -c1-7)]($COMMIT_URL) $COMMIT_MSG - $AUTHOR\",
-              \"color\": 5814783
-            }]
-          }" \
+           -d "{\"content\":\"🚀 Nuevo commit en *${{ github.ref_name }}*\\n👤 Autor: ${{ github.actor }}\\n📝 Commit: ${{ github.event.head_commit.message }}\\n🔗 Link: ${{ github.event.head_commit.url }}\\n📦 Repo: ${{ github.repository }}\"}" \
           "https://discord.com/api/webhooks/1505473610624667772/Rgj9Oz3qnFIi4UMgNX7Q_lOdGO9qZEIumUT5PLJqOZdfV67_Kd348hsyW6y47SXq4FG1"
