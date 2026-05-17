@@ -18,6 +18,7 @@ jobs:
           REPO: ${{ github.repository }}
         run: |
           SHORT_SHA=${COMMIT_SHA:0:8}
+          CURRENT_DATE=$(date +"%Y-%m-%d %H:%M:%S") 
           REPO_NAME=${REPO#*/}
 
           case "$BRANCH" in
@@ -59,6 +60,7 @@ jobs:
             --arg url "$COMMIT_URL" \
             --arg repo "$REPO_NAME" \
             --arg sha "$SHORT_SHA" \
+            --arg date "$CURRENT_DATE" \
             --argjson color "$COLOR" \
             '{
               embeds: [{
@@ -71,7 +73,7 @@ jobs:
                   { name: "🔢 Commit ID", value: ("[`" + $sha + "`](" + $url + ")"), inline: true },
                   { name: "📝 Mensaje", value: $msg }
                 ],
-                footer: { text: "GitHub Actions • '$(date +"%Y-%m-%d %H:%M:%S")'" }
+                footer: { text: "GitHub Actions • \($date)" }
               }]
             }')
 
