@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Recuerda que NO necesitas actions/checkout aquí, ya que los datos los tomamos del contexto de GitHub
       - name: Send embed message to Discord
         env:
           DISCORD_WEBHOOK: "https://discord.com/api/webhooks/1505473610624667772/Rgj9Oz3qnFIi4UMgNX7Q_lOdGO9qZEIumUT5PLJqOZdfV67_Kd348hsyW6y47SXq4FG1"
@@ -21,10 +20,10 @@ jobs:
           BRANCH: ${{ github.ref_name }}
           REPO: ${{ github.repository }}
         run: |
-          # Extraemos los primeros 7 caracteres del hash para el formato corto
+          # Extraemos los primeros 7 caracteres del hash
           SHORT_SHA=${COMMIT_SHA:0:7}
           
-          # Construimos el JSON usando jq para evitar que comillas o saltos de línea rompan el formato
+          # Usamos las variables de entorno de manera segura con el formato interno de jq
           JSON_PAYLOAD=$(jq -n \
             --arg branch "$BRANCH" \
             --arg author "$AUTHOR" \
@@ -40,7 +39,7 @@ jobs:
                 fields: [
                   { name: "👤 Autor", value: $author, inline: true },
                   { name: "🌿 Rama", value: $branch, inline: true },
-                  { name: "🔢 Commit ID", value: "[\(`$sha`)](\($url))", inline: true },
+                  { name: "🔢 Commit ID", value: ("[`" + $sha + "`](" + $url + ")"), inline: true },
                   { name: "📝 Mensaje", value: $msg }
                 ],
                 footer: { text: "GitHub Actions" }
