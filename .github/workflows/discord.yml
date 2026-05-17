@@ -1,1 +1,44 @@
+name: Discord Notifications
 
+on:
+  push: 
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send embed message to Discord
+        env:
+          DISCORD_WEBHOOK: "https://discord.com/api/webhooks/1505473610624667772/Rgj9Oz3qnFIi4UMgNX7Q_lOdGO9qZEIumUT5PLJqOZdfV67_Kd348hsyW6y47SXq4FG1"
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
+          COMMIT_URL: ${{ github.event.head_commit.url }}
+          COMMIT_SHA: ${{ github.sha }}
+          AUTHOR: ${{ github.actor }}
+          BRANCH: ${{ github.ref_name }}
+          REPO: ${{ github.repository }}
+        run: |
+          SHORT_SHA=${COMMIT_SHA:0:7}
+          
+          JSON_PAYLOAD=$(jq -n \
+            --arg branch "$BRANCH" \
+            --arg author "$AUTHOR" \
+            --arg msg "$COMMIT_MSG" \
+            --arg url "$COMMIT_URL" \
+            --arg repo "$REPO" \
+            --arg sha "$SHORT_SHA" \
+            '{
+              embeds: [{
+                title: "🚀 Nuevo Commit en \($repo)",
+                url: $url,
+                color: 5814783,
+                fields: [
+                  { name: "👤 Autor", value: $author, inline: true },
+                  { name: "🌿 Rama", value: $branch, inline: true },
+                  { name: "🔢 Commit ID", value: ("[`" + $sha + "`](" + $url + ")"), inline: true },
+                  { name: "📝 Mensaje", value: $msg }
+                ],
+                footer: { text: "GitHub Actions" }
+              }]
+            }')
+
+          curl -H "Content-Type: application/json" -X POST -d "$JSON_PAYLOAD" "$DISCORD_WEBHOOK"
