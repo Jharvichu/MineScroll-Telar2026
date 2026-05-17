@@ -1,7 +1,8 @@
+using FMODUnity; 
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using FMODUnity; 
+using Player;
 
 public class CinematicIntermedio2 : MonoBehaviour
 {
@@ -54,6 +55,11 @@ public class CinematicIntermedio2 : MonoBehaviour
 
     private Vector3 posicionCamaraOriginal;
 
+    [Header("Trigger de diálogo final")]
+    public Transform trigger;
+    public TextCielo triggerDialog;
+    private PlayerController playerController;
+
     void Start()
     {
         posicionCamaraOriginal = mainCamera.transform.position;
@@ -64,7 +70,8 @@ public class CinematicIntermedio2 : MonoBehaviour
         if (transitionPanel != null) transitionPanel.SetActive(false);
 
         foreach (var dialogo in dialogosConversacion) { dialogo.SetActive(false); }
-        
+        playerController = actorCarrillo.GetComponent<PlayerController>();
+
         StartCoroutine(SecuenciaIntermedio2());
     }
 
@@ -149,12 +156,22 @@ public class CinematicIntermedio2 : MonoBehaviour
         AudioManager.Instance.SetBGMParameter("QuickTimeEvent", 0f);
 
         // Si tienes animación de caída ponla aquí, si no, usamos Idle. Baja muy rápido (x3).
-        yield return MoverActor(actorCarrillo, animCarrillo, puntoAterrizaje.position, "Idle", velocidadTrepar * 3f); 
+        yield return MoverActor(actorCarrillo, animCarrillo, puntoAterrizaje.position, "Idle", velocidadTrepar * 3f);
         // [AUDIO: Sonido de zapatos golpeando el pavimento al caer]
-        
-        
+
+        // ir al trigger
+        yield return MoverActor(actorCarrillo, animCarrillo, triggerDialog.transform.position, "Correr", velocidadCaminar * 1.5f);
+
+
+        // activar diálogo manualmente
+        triggerDialog.Activar(actorCarrillo.GetComponent<PlayerController>());
+
+        // esperar que termine
+        yield return new WaitUntil(() => triggerDialog.DialogoTerminado);
+
+    
         // [AUDIO: Pasos corriendo INICIO]
-        yield return MoverActor(actorCarrillo, animCarrillo, puntoSalida.position, "Correr", velocidadCaminar * 1.5f);
+        yield return MoverActor(actorCarrillo, animCarrillo, puntoSalida.position, "Idle", velocidadCaminar * 1.5f);
         // [AUDIO: Pasos corriendo FIN]
 
 
@@ -282,4 +299,5 @@ public class CinematicIntermedio2 : MonoBehaviour
             }
         }
     }
+    
 }

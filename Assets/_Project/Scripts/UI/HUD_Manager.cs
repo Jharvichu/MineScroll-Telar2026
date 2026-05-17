@@ -10,6 +10,7 @@ public sealed class HUDSlotManager : MonoBehaviour
 
     private List<Image> slotImages = new List<Image>();
     private float timer;
+    private int photosCount;
 
     private void Awake()
     {
@@ -30,6 +31,17 @@ public sealed class HUDSlotManager : MonoBehaviour
                 slotImages.Add(img);
             }
         }
+
+        photosCount = PhotoManager.Instance.GetPhotoCount();
+        
+        for (int i = 0; i < slotImages.Count; i++)
+        {
+            if (slotImages[i] == null) continue;
+            float targetAlpha = (i < photosCount) ? 1f : 0f; 
+            ApplyAlpha(slotImages[i], targetAlpha);
+        }
+        
+        PhotoManager.Instance.ResetPhoto();
         
         Debug.Log($"<color=green>HUD Initialized:</color> {slotImages.Count} slots detectados.");
     }
@@ -53,12 +65,12 @@ public sealed class HUDSlotManager : MonoBehaviour
         }
 
         // Accedemos directamente a la instancia persistente
-        int currentPhotos = PhotoManager.Instance.GetPhotoCount();
+        int currentPhotos = PhotoManager.Instance.GetPhotoCountTemporary();
 
         for (int i = 0; i < slotImages.Count; i++)
         {
             if (slotImages[i] == null) continue;
-            float targetAlpha = (i < currentPhotos) ? 1f : 0f; 
+            float targetAlpha = (i < photosCount + currentPhotos) ? 1f : 0f; 
             ApplyAlpha(slotImages[i], targetAlpha);
         }
     }

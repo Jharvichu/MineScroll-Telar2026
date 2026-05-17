@@ -6,7 +6,8 @@ using Player;
 public class LevelExitTrigger : MonoBehaviour
 {
     [Header("Transición")]
-    public GameObject transitionPanel;  
+    public GameObject transitionPanel;
+    public GameObject HUDCanvas; 
     public float transitionTime = 1f;   
 
     [Header("Escena Destino")]
@@ -29,7 +30,8 @@ public class LevelExitTrigger : MonoBehaviour
                 Debug.Log("2. Roldan congelado exitosamente.");
                 
             }
-
+            
+            if(HUDCanvas != null) HUDCanvas.SetActive(false);
             Debug.Log("3. Arrancando corrutina de pantalla negra...");
             StartCoroutine(FadeOutYCambiarEscena());
         }
@@ -65,6 +67,7 @@ public class LevelExitTrigger : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         Debug.Log("6. ¡Viajando a " + siguienteEscena + "!");
+        PhotoManager.Instance.AddPhoto();
         SceneManager.LoadScene(siguienteEscena);
     }
 }

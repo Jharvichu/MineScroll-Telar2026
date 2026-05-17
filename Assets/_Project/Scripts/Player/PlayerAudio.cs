@@ -8,6 +8,8 @@ public class PlayerAudio : MonoBehaviour {
     [SerializeField] EventReference ledgegrabEvent;
     [SerializeField] EventReference godownEvent;
     [SerializeField] EventReference deathEvent;
+    [SerializeField] EventReference takePhotoEvent;
+    [SerializeField] EventReference preparePhotoEvent;
 
     public void OnFootstep() {
         AudioManager.Instance.PlaySFX3D(footstepEvent, transform.position);
@@ -31,5 +33,12 @@ public class PlayerAudio : MonoBehaviour {
         AudioManager.Instance.PlaySFX3D(ledgegrabEvent, transform.position);
     }
 
+    public void OnTakePhoto() {
+        AudioManager.Instance.PlaySFX3D(takePhotoEvent, transform.position);
+    }
+    
+    public void OnPreparePhoto() {
+        AudioManager.Instance.PlaySFX3D(preparePhotoEvent, transform.position);
+    }
 
     }

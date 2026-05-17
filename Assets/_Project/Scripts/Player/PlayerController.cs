@@ -13,6 +13,7 @@ namespace Player {
 
         public Rigidbody2D Rigidbody2D { private set; get; }
         public Collider2D Collider2D { private set; get; }
+        public AnimatorController AnimatorController { private set; get; }
         public Animator Animator { private set; get; }
 
         public SpriteRenderer SpriteRenderer { private set; get; }
@@ -27,7 +28,8 @@ namespace Player {
 		protected override void Awake() {
 			Rigidbody2D = GetComponent<Rigidbody2D>();
             Collider2D = GetComponent<Collider2D>() as CapsuleCollider2D;
-			Animator = GetComponent<Animator>();
+            Animator = GetComponent<Animator>();
+			AnimatorController = GetComponent<AnimatorController>();
 			SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
 			Camera = GetComponentInChildren<CameraComponent>();
 			base.Awake();
@@ -45,6 +47,7 @@ namespace Player {
             {
                 Sombra.SetActive(true);
             }
+          
 
             base.Update();
         }

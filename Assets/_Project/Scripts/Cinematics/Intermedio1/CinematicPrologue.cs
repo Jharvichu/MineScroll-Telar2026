@@ -1,8 +1,9 @@
+using FMODUnity;
+using Player;
 using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using FMODUnity;
 
 public class CinematicPrologue : MonoBehaviour
 {
@@ -60,6 +61,11 @@ public class CinematicPrologue : MonoBehaviour
     private bool intentoTerminado = false;
     private bool exitoQTE = false;
 
+    [Header("Trigger de diálogo final")]
+    public Transform triggerDialog1;
+    public DIalog1Tuto21 triggerDialog;
+    private PlayerController playerController;
+
     void Start()
     {
         tamañoCamaraOriginal = mainCamera.orthographicSize;
@@ -67,8 +73,9 @@ public class CinematicPrologue : MonoBehaviour
         escalaOriginalCarrillo = actorCarrillo.localScale; 
         
         if (hudCamaraPOV != null) hudCamaraPOV.SetActive(false);
-        if (transitionPanel != null) transitionPanel.SetActive(false); 
-        
+        if (transitionPanel != null) transitionPanel.SetActive(false);
+        playerController = actorCarrillo.GetComponent<PlayerController>();
+
         StartCoroutine(SecuenciaCinematica());
     }
 
@@ -80,7 +87,7 @@ public class CinematicPrologue : MonoBehaviour
         AudioManager.Instance.PlaySFX(sfxPrepareCamera);
         if (encuadre1 != null) yield return MoverCamara(encuadre1.position, 0.5f);
         if(hudCamaraPOV != null) hudCamaraPOV.SetActive(true);
-        yield return EjecutarQTE(150f, 90f, 45f, new Vector2(0, 0), true, 0f);
+        yield return EjecutarQTE(150f, 90f, 45f, new Vector2(0, -150), true, 0f);
         if(hudCamaraPOV != null) hudCamaraPOV.SetActive(false);
         yield return MoverCamara(posicionCamaraOriginal, 0.5f);
 
@@ -90,7 +97,7 @@ public class CinematicPrologue : MonoBehaviour
         AudioManager.Instance.PlaySFX(sfxPrepareCamera);
         if (encuadre2 != null) yield return MoverCamara(encuadre2.position, 0.5f);
         if(hudCamaraPOV != null) hudCamaraPOV.SetActive(true);
-        yield return EjecutarQTE(180f, 200f, 30f, new Vector2(150, 100), true, 0f);
+        yield return EjecutarQTE(180f, 200f, 30f, new Vector2(0, -150), true, 0f);
         if(hudCamaraPOV != null) hudCamaraPOV.SetActive(false);
         yield return MoverCamara(posicionCamaraOriginal, 0.5f);
 
@@ -126,25 +133,42 @@ public class CinematicPrologue : MonoBehaviour
         // 6.
         yield return new WaitForSeconds(1f); 
         if(encuadreCamioneta != null) yield return MoverCamara(encuadreCamioneta.position, 0.2f);
-        mainCamera.orthographicSize = tamañoCamaraOriginal - 2f; 
+        mainCamera.orthographicSize = tamañoCamaraOriginal; 
         Time.timeScale = 0.3f; 
         
         if(hudCamaraPOV != null) hudCamaraPOV.SetActive(true);
         animCarrillo.Play("Foto");
         AudioManager.Instance.PlaySFX(sfxPrepareCamera);
-        yield return EjecutarQTE(400f, 135f, 60f, new Vector2(0, -100), false, tiempoLimiteCamioneta);
+        yield return EjecutarQTE(400f, 135f, 60f, new Vector2(0, -150), false, tiempoLimiteCamioneta);
         if(hudCamaraPOV != null) hudCamaraPOV.SetActive(false);
         
         // 7.
         Time.timeScale = 1f;
         mainCamera.orthographicSize = tamañoCamaraOriginal;
         yield return MoverCamara(posicionCamaraOriginal, 0.5f);
-        
+
         // 8.
-        yield return new WaitForSeconds(1.5f); 
+        yield return new WaitForSeconds(1.5f);
         actorCarrillo.gameObject.SetActive(true);
 
-        actorCarrillo.localScale = new Vector3(Mathf.Abs(escalaOriginalCarrillo.x), escalaOriginalCarrillo.y, escalaOriginalCarrillo.z);
+        actorCarrillo.localScale = new Vector3(
+            Mathf.Abs(escalaOriginalCarrillo.x),
+            escalaOriginalCarrillo.y,
+            escalaOriginalCarrillo.z
+        );
+
+        // ir al trigger
+        yield return MoverActor(actorCarrillo, animCarrillo, triggerDialog.transform.position);
+
+        animCarrillo.Play("Idle");
+
+        // activar diálogo manualmente
+        triggerDialog.Activar(actorCarrillo.GetComponent<PlayerController>());
+
+        // esperar que termine
+        yield return new WaitUntil(() => triggerDialog.DialogoTerminado);
+
+        // ahora sí ir al final
         yield return MoverActor(actorCarrillo, animCarrillo, puntoFinal.position);
 
         Debug.Log("Cinemática Terminada. Iniciando Transición Final...");

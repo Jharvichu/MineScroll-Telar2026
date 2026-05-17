@@ -340,7 +340,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: 2313463732811680064, guid: bbffc5fdf35f2f9418918efb0431b885, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -428,6 +428,20 @@ MonoBehaviour:
       Data3: -965258083
       Data4: -2070268623
     Path: event:/SFX_PLAYER_DEATH
+  takePhotoEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  preparePhotoEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &8016099838247155664
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,7 +559,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rootStateMachine: {fileID: 11400000, guid: 23263a4299f804442935a0945c2fad4e, type: 2}
   canControl: 1
+  isPlayerInside: 0
   Sombra: {fileID: 4056058242068804794}
+  Camera: {fileID: 0}
   canHide: 0
   isHidden: 0
   isCrouching: 0
@@ -581,4 +597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownTime: 1.5
+  fotoTomadad: 0
+  photoZone: {fileID: 0}
+  photoCount: 0
   animator: {fileID: 5065995409666095780}

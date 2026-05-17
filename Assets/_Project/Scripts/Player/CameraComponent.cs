@@ -7,8 +7,10 @@ public class CameraComponent : MonoBehaviour
     [Header("Configuración de Cámara")]
     [SerializeField] private float cooldownTime = 1.5f;
     private float nextPhotoTime = 0f;
+    public bool fotoTomadad = false;
+    public PhotoZone photoZone;
     
-    int photoCount = 1;
+    public int photoCount = 0;
     
     public Animator animator;
     
@@ -33,10 +35,11 @@ public class CameraComponent : MonoBehaviour
     {
         if (playerController.isPlayerInside)
         {
-            PhotoManager.Instance.AddPhoto(photoCount);
+            PhotoManager.Instance.AddPhotoTemporary(photoCount);
             photoCount = 0;
-            Debug.Log(PhotoManager.Instance.GetPhotoCount());
+            if (photoZone != null) photoZone.cantidadFoto = 0;
         }
+        fotoTomadad = false;
         animator.SetTrigger("TakePhoto");
         Debug.Log("¡Foto capturada!");
     }

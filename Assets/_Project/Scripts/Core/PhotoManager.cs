@@ -7,6 +7,8 @@ public class PhotoManager : MonoBehaviour
     [Header("Datos de la Cámara")]
     [SerializeField] private int photoCount = 0;
 
+    private int photoCountTemporary;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -23,10 +25,26 @@ public class PhotoManager : MonoBehaviour
         Debug.Log("<color=cyan>PhotoManager:</color> Instancia persistente inicializada.");
     }
     
-    public void AddPhoto(int photoNum)
+    public void AddPhotoTemporary(int photoNum)
     {
-        photoCount += photoNum;
+        photoCountTemporary += photoNum;
         Debug.Log($"<color=green>Foto capturada!</color> Total: {photoCount}");
+    }
+
+    public void AddPhoto()
+    {
+        photoCount = photoCountTemporary;
+        ResetPhoto();
+    }
+
+    public void ResetPhoto()
+    {
+        photoCountTemporary = 0;
+    }
+    
+    public int GetPhotoCountTemporary()
+    {
+        return photoCountTemporary;
     }
     
     public int GetPhotoCount()
