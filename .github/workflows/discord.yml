@@ -1,10 +1,7 @@
 name: Discord Notifications
 
 on:
-  push:
-    branches:
-      - develop
-
+  push: 
 jobs:
   notify:
     runs-on: ubuntu-latest
@@ -20,10 +17,8 @@ jobs:
           BRANCH: ${{ github.ref_name }}
           REPO: ${{ github.repository }}
         run: |
-          # Extraemos los primeros 7 caracteres del hash
           SHORT_SHA=${COMMIT_SHA:0:7}
           
-          # Usamos las variables de entorno de manera segura con el formato interno de jq
           JSON_PAYLOAD=$(jq -n \
             --arg branch "$BRANCH" \
             --arg author "$AUTHOR" \
@@ -46,5 +41,4 @@ jobs:
               }]
             }')
 
-          # Enviamos la petición a Discord
           curl -H "Content-Type: application/json" -X POST -d "$JSON_PAYLOAD" "$DISCORD_WEBHOOK"
