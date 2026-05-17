@@ -59,11 +59,12 @@ jobs:
             --arg url "$COMMIT_URL" \
             --arg repo "$REPO_NAME" \
             --arg sha "$SHORT_SHA" \
+            --argjson color "$COLOR" \
             '{
               embeds: [{
                 title: "🚀 Nuevo Commit en \($repo)",
                 url: $url,
-                color: $COLOR,
+                color: $color,
                 fields: [
                   { name: "👤 Autor", value: $author, inline: true },
                   { name: "🌿 Rama", value: $branch, inline: true },
