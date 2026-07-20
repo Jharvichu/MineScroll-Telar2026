@@ -279,7 +279,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: En desarrollo
+  m_text: Es hora del siguiente reportaje.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2dd80e827f3d23e40a20e0f69a68c5fb, type: 2}
   m_sharedMaterial: {fileID: -376184049799151987, guid: 2dd80e827f3d23e40a20e0f69a68c5fb, type: 2}
