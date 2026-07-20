@@ -3061,23 +3061,23 @@ MonoBehaviour:
   dialogueLines:
   - image: {fileID: -8551478148450923529, guid: fd2bbf71e2e327441ba3265f390deb1f, type: 3}
     textoAMostrar: "Mire. Hasta aqu\xED la tengo que dejar."
-    duration: 3
+    duration: 2
     isCharacterA: 0
   - image: {fileID: -8551478148450923529, guid: fd2bbf71e2e327441ba3265f390deb1f, type: 3}
-    textoAMostrar: "\xBFNo puede dejarme un poco m\xE1s cerca, Don M\xE1ximo?"
-    duration: 3
+    textoAMostrar: "\xBFNo podr\xEDa dejarme un poco m\xE1s cerca, Don M\xE1ximo?"
+    duration: 2.2
     isCharacterA: 1
   - image: {fileID: -8551478148450923529, guid: fd2bbf71e2e327441ba3265f390deb1f, type: 3}
     textoAMostrar: "Se\xF1orita Mar\xEDa, me espera mi familia en casa."
-    duration: 3
+    duration: 2.2
     isCharacterA: 0
   - image: {fileID: -8551478148450923529, guid: fd2bbf71e2e327441ba3265f390deb1f, type: 3}
     textoAMostrar: "Tenga mucho cuidado. Oc\xFAltese de la gente de Uchu."
-    duration: 3
+    duration: 2.2
     isCharacterA: 0
   - image: {fileID: -8551478148450923529, guid: fd2bbf71e2e327441ba3265f390deb1f, type: 3}
     textoAMostrar: "Ah\xED el diablo perdi\xF3 el trinche."
-    duration: 3
+    duration: 3.2
     isCharacterA: 0
 --- !u!4 &785397325
 Transform:
@@ -4742,13 +4742,13 @@ MonoBehaviour:
   duracionTextoArriba: 6
   duracionTextoAbajo: 6
   frases:
-  - "Han pasado ya 5 d\xEDas desde que Rosa Chipani (13) ha desaparecido de tu barrio,
+  - "Han pasado 5 d\xEDas desde que Rosa Chipani (13) ha desaparecido de tu barrio,
     donde su abuela enferma la cuidaba."
-  - "La \xFAltima vez que la vieron fue abordando un bus con destino a La pampa,
-    en Madre de Dios, con una se\xF1ora (40)."
+  - "Fue vista por \xFAltima vez abordando un bus con destino a La pampa, en la regi\xF3n
+    de Madre de Dios, junto a una se\xF1ora (40)."
   - "A\xFAn siendo estudiante de periodismo eres posiblemente la \xFAnica que puede
     encontrar a Rosa. Ya que en Madre de Dios (con m\xE1s de 200 mil habitantes)
-    solo hay 8 polic\xEDas tratando las desapariciones y trata de personas."
+    solo hay 8 polic\xEDas aignados a casos de desapariciones y trata de personas."
   - Es hora del siguiente reportaje.
   objetoDialogoOrilla: {fileID: 785397323}
   activarSiguienteScript: 1

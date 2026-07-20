@@ -279,7 +279,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Continuar\xE1"
+  m_text: En desarrollo
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2dd80e827f3d23e40a20e0f69a68c5fb, type: 2}
   m_sharedMaterial: {fileID: -376184049799151987, guid: 2dd80e827f3d23e40a20e0f69a68c5fb, type: 2}
@@ -754,11 +754,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imagen: {fileID: 1199528849}
   texto: {fileID: 781019757}
-  esperaAntesImagen: 3
-  esperaAntesTexto: 3
-  esperaFinal: 4
-  velocidadImagen: 0.2
-  velocidadTexto: 0.2
+  esperaAntesImagen: 1
+  esperaAntesTexto: 1
+  esperaFinal: 2
+  velocidadImagen: 0.45
+  velocidadTexto: 0.45
   nombreEscena: MainMenu
 --- !u!4 &2040111077
 Transform:
