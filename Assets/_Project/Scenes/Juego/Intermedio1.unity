@@ -11951,17 +11951,16 @@ MonoBehaviour:
   velocidadEscritura: 0.05
   dialogueLines:
   - image: {fileID: -8551478148450923529, guid: fd2bbf71e2e327441ba3265f390deb1f, type: 3}
-    textoAMostrar: No son mayores que mi primita.
-    duration: 2
+    textoAMostrar: "Esas ni\xF1as no lucen mayores que mi primita..."
+    duration: 1.8
   - image: {fileID: -8551478148450923529, guid: fd2bbf71e2e327441ba3265f390deb1f, type: 3}
     textoAMostrar: "No deben tener m\xE1s de 15 a\xF1os."
+    duration: 1.5
+  - image: {fileID: -8551478148450923529, guid: fd2bbf71e2e327441ba3265f390deb1f, type: 3}
+    textoAMostrar: Muchos avisos en Cusco ofrecen trabajos en Madre de Dios.
     duration: 2
   - image: {fileID: -8551478148450923529, guid: fd2bbf71e2e327441ba3265f390deb1f, type: 3}
-    textoAMostrar: "Un mont\xF3n de avisos en Cusco ofrecen trabajos en Madre de
-      Dios."
-    duration: 2
-  - image: {fileID: -8551478148450923529, guid: fd2bbf71e2e327441ba3265f390deb1f, type: 3}
-    textoAMostrar: "Mi prima pudo estar aqu\xED..."
+    textoAMostrar: Mi prima pudo ser una de ellas...
     duration: 2
 --- !u!1 &1801401557
 GameObject:
@@ -13361,6 +13360,20 @@ MonoBehaviour:
       Data4: 0
     Path: 
   deathEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  takePhotoEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  preparePhotoEvent:
     Guid:
       Data1: 0
       Data2: 0
