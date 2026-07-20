@@ -18,6 +18,20 @@ public class GameOverAtras : MonoBehaviour
             string lastLevel = PlayerPrefs.GetString("LastLevel");
             StartCoroutine(Transicion(lastLevel));
         };
+        
+        // Botón exit Menu
+        root.Q<Button>("menu-button").clicked += () =>
+        {
+            string lastLevel = "MainMenu";
+            StartCoroutine(Transicion(lastLevel));
+        };
+        
+        // Botón siguiente nivel
+        root.Q<Button>("next-button").clicked += () =>
+        {
+            string lastLevel = "Intermedio1";
+            StartCoroutine(Transicion(lastLevel));
+        };
     }
     IEnumerator Transicion(string escena)
     {
