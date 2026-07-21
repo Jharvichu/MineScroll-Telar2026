@@ -347,11 +347,11 @@ MonoBehaviour:
   bgmFadeTime: 2
   ambienceEvent:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1682653659
+      Data2: 1288218551
+      Data3: -169022843
+      Data4: 1970738728
+    Path: event:/AMB_Viento
   ambienceFadeTime: 2
 --- !u!4 &519877738
 Transform:
@@ -433,6 +433,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transition: {fileID: 1702338708}
+  selectSound:
+    Guid:
+      Data1: 1978039883
+      Data2: 1138737802
+      Data3: -1367705940
+      Data4: -475227002
+    Path: event:/SFX_MENU_Select
+  hoverSound:
+    Guid:
+      Data1: 1879258810
+      Data2: 1103920301
+      Data3: -1635652218
+      Data4: 976348004
+    Path: event:/SFX_MENU_Hover1
   transitionTime: 1
 --- !u!1 &1336821075
 GameObject:

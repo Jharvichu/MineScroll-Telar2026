@@ -10561,7 +10561,7 @@ MonoBehaviour:
       Data3: -1393489489
       Data4: 580798848
     Path: event:/CampAband_o_CampPrinc
-  bgmFadeTime: 2
+  bgmFadeTime: 0.5
   ambienceEvent:
     Guid:
       Data1: -1682653659
@@ -10569,7 +10569,7 @@ MonoBehaviour:
       Data3: -169022843
       Data4: 1970738728
     Path: event:/AMB_Viento
-  ambienceFadeTime: 2
+  ambienceFadeTime: 1
 --- !u!4 &1515354191
 Transform:
   m_ObjectHideFlags: 0

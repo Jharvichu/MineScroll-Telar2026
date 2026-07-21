@@ -2965,15 +2965,15 @@ MonoBehaviour:
       Data3: 1904591240
       Data4: -1979282322
     Path: event:/Uchu
-  bgmFadeTime: 1
+  bgmFadeTime: 0.5
   ambienceEvent:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  ambienceFadeTime: 2
+      Data1: -1682653659
+      Data2: 1288218551
+      Data3: -169022843
+      Data4: 1970738728
+    Path: event:/AMB_Viento
+  ambienceFadeTime: 1
 --- !u!4 &1146817668
 Transform:
   m_ObjectHideFlags: 0

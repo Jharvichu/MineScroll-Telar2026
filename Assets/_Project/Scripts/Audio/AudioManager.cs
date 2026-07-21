@@ -135,5 +135,27 @@ public class AudioManager : MonoBehaviour {
     public EventInstance GetBGMInstance() {
         return activeBGM;
     }
+    
+    public void StopBGMImmediate()
+    {
+        if (activeBGM.isValid())
+        {
+            activeBGM.stop(STOP_MODE.IMMEDIATE);
+            activeBGM.release();
+            activeBGM.clearHandle();
+            activeBGMGuid = default;
+        }
+    }
+
+    public void StopAmbienceImmediate()
+    {
+        if (activeAmbience.isValid())
+        {
+            activeAmbience.stop(STOP_MODE.IMMEDIATE);
+            activeAmbience.release();
+            activeAmbience.clearHandle();
+            activeAmbienceGuid = default;
+        }
+    }
 
 }

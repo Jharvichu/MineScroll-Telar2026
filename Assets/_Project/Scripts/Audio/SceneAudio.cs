@@ -17,4 +17,13 @@ public class SceneAudio : MonoBehaviour {
         if (!ambienceEvent.IsNull)
             AudioManager.Instance.CrossfadeAmbience(ambienceEvent, ambienceFadeTime);
     }
+    
+    private void OnDestroy()
+    {
+        if (AudioManager.Instance == null)
+            return;
+
+        AudioManager.Instance.StopBGMImmediate();
+        AudioManager.Instance.StopAmbienceImmediate();
+    }
 }
